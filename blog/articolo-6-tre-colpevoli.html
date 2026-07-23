@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I tre colpevoli invisibili che erodono il tuo margine | Daniele Scano</title>
+  <meta name="description" content="Resa, scarto e porzione: tre cause precise di perdita di margine che quasi nessun ristoratore calcola. Con la storia di Lorenzo e le sue vongole a occhio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --white: #FAFAF8; --paper: #F0EDE8; --ink: #1C1C1A; --ink-2: #3D3D3A; --ink-3: #6B6560;
+      --terra: #C1614A; --terra-l: #E8A087; --terra-xl: #F5EDE6; --border: #E2DDD8;
+      --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Epilogue', system-ui, sans-serif; --max: 1100px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--terra); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-family: var(--sans); font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all .22s; border-radius: 3px; }
+    .btn-terra { background: var(--terra); color: #fff; }
+    .btn-terra:hover { background: #A8503C; transform: translateY(-1px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; background: rgba(250,250,248,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-name { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink); }
+    .nav-logo-sub { font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-3); transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta { color: var(--terra); font-weight: 600; }
+
+    .article-header { padding: 150px 0 60px; background: var(--paper); }
+    .breadcrumb { font-size: 13px; color: var(--ink-3); margin-bottom: 24px; }
+    .breadcrumb a { color: var(--terra); font-weight: 600; }
+    .article-header h1 { font-family: var(--serif); font-size: clamp(32px,4.5vw,52px); font-weight: 700; line-height: 1.15; margin-bottom: 20px; max-width: 780px; }
+    .article-header-meta { display: flex; gap: 20px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
+    .article-header-meta span::before { content: '·'; margin-right: 20px; color: var(--border); }
+    .article-header-meta span:first-child::before { content: none; margin-right: 0; }
+
+    .article-body { padding: 70px 0 100px; }
+    .article-content { max-width: 700px; margin: 0 auto; }
+    .article-content p { font-size: 17px; color: var(--ink-2); line-height: 1.85; margin-bottom: 24px; }
+    .article-content h2 { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); margin: 52px 0 22px; line-height: 1.25; }
+    .article-content strong { color: var(--ink); font-weight: 600; }
+
+    .culprit-box { background: var(--paper); border-left: 3px solid var(--terra); border-radius: 4px; padding: 26px 30px; margin: 30px 0; }
+    .culprit-box .num { font-family: var(--serif); font-size: 13px; font-weight: 700; color: var(--terra); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; }
+    .culprit-box .title { font-family: var(--serif); font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+
+    .calc-line { font-family: var(--sans); background: var(--terra-xl); padding: 14px 20px; border-radius: 3px; margin: 16px 0; font-size: 15px; color: var(--ink); display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .calc-line .result { font-weight: 700; color: var(--terra); font-size: 16px; white-space: nowrap; }
+
+    table.yield { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 13.5px; }
+    table.yield th { background: var(--terra); color: #fff; text-align: left; padding: 9px 12px; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+    table.yield td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--ink-2); }
+    table.yield tr:nth-child(even) td { background: var(--paper); }
+
+    .result-box { background: var(--ink); border-radius: 4px; padding: 28px 32px; margin: 32px 0; color: #fff; }
+    .result-box .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--terra-l); margin-bottom: 10px; }
+    .result-box .value { font-family: var(--serif); font-size: 28px; font-weight: 700; }
+    .result-box .sub { font-size: 14px; color: rgba(255,255,255,.6); margin-top: 4px; }
+
+    .article-cta { max-width: 700px; margin: 60px auto 0; background: var(--ink); border-radius: 6px; padding: 40px 44px; text-align: center; }
+    .article-cta p { color: rgba(255,255,255,.6); font-size: 15px; margin-bottom: 20px; }
+    .article-cta p strong { color: #fff; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; } nav { padding: 0 24px; } .nav-links { display: none; }
+      .article-content p { font-size: 16px; } .article-cta { padding: 32px 24px; }
+      table.yield { font-size: 11.5px; }
+    }
+
+    footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 72px 0 32px; margin-top: 60px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-logo-name { font-family: var(--serif); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .footer-logo-sub { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--terra); margin-bottom: 16px; font-weight: 600; }
+    .footer-desc { font-size: 14px; color: rgba(255,255,255,.38); line-height: 1.75; max-width: 260px; }
+    .footer-col-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,.45); transition: color .18s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy, .footer-piva { font-size: 12px; color: rgba(255,255,255,.25); }
+    @media (max-width: 768px) { .footer-top { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-name">Daniele Scano</span>
+      <span class="nav-logo-sub">Gestione Ristorante</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#about">Chi sono</a>
+      <a href="/#services">Servizi</a>
+      <a href="/#results">Risultati</a>
+      <a href="/blog" class="nav-cta">Blog</a>
+      <a href="/#contact" class="nav-cta">Parliamo →</a>
+    </div>
+  </div>
+</nav>
+
+<section class="article-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="/blog">← Torna al blog</a></div>
+    <div class="eyebrow">Food Cost</div>
+    <h1 style="margin-top:16px;">I tre colpevoli invisibili che erodono il tuo margine</h1>
+    <div class="article-header-meta">
+      <span>Daniele Scano</span>
+      <span>8 min di lettura</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-body">
+  <div class="container">
+    <div class="article-content">
+
+      <p>C'è una scena che si ripete con una frequenza quasi comica nei ristoranti di tutta Italia.</p>
+
+      <p>Il titolare apre il frigorifero a fine servizio e trova qualcosa che non dovrebbe esserci. Un pezzo di carne non utilizzato. Una vaschetta di salsa preparata in eccesso. Mezzo chilo di verdure che domani non saranno più fresche.</p>
+
+      <p>Quello che succede dopo dipende dalla persona. Alcuni si arrabbiano. Alcuni scrollano le spalle. La maggior parte fa una cosa sola: chiude il frigorifero e va avanti.</p>
+
+      <p>Nessuno scrive niente. Nessuno calcola niente. Quello che è andato perso rimane invisibile. Eppure pesa. Pesa eccome — perché quella scena si ripete ogni giorno, in ogni cucina, per trecento giorni all'anno. E la somma di tutti quegli episodi invisibili è spesso la differenza tra un ristorante che guadagna e uno che non capisce perché non guadagna abbastanza.</p>
+
+      <p>Tre cause precise di perdita di margine. Le chiamiamo invisibili non perché siano difficili da capire, ma perché quasi nessuno le guarda. Si chiamano resa, scarto e porzione.</p>
+
+      <h2>Lorenzo e le vongole a occhio</h2>
+
+      <p>Lorenzo ha trentasei anni e gestisce un ristorante di pesce a pochi chilometri dalla costa adriatica. Il suo piatto forte sono gli spaghetti alle vongole. Sedicimila euro al mese di fatturato. Sessantadue coperti in media al giorno nei mesi di punta.</p>
+
+      <p>Lorenzo sa il prezzo delle vongole a memoria. Quello che non sa è quanto pesa una sua porzione di vongole. Non l'ha mai pesata. Dopo anni a fare questo piatto, le mani sanno quanto mettere. Ma le mani, come quelle di Gianni con la mozzarella, non fanno i conti.</p>
+
+      <div class="culprit-box">
+        <div class="num">Colpevole 1</div>
+        <div class="title">La resa</div>
+        <p style="margin-bottom:0;">La resa risponde a una domanda semplice: di tutto quello che compro, quanto posso effettivamente usare? La risposta, quasi sempre, è: meno di quello che pensi.</p>
+      </div>
+
+      <p>Le vongole veraci fresche che usa Lorenzo costano 9,80€ al chilogrammo. Ma le vongole hanno un guscio, e il guscio non si mangia. Quando Lorenzo pulisce un chilogrammo di vongole, gli rimane circa il 38% del peso originale — 380 grammi di polpa utilizzabile.</p>
+
+      <div class="calc-line"><span>Costo reale della polpa: €9,80 ÷ 0,38</span><span class="result">€25,79/kg</span></div>
+
+      <p>Quasi il triplo del prezzo di acquisto. Se Lorenzo costruisce la sua scheda tecnica usando il prezzo di acquisto invece del costo reale, il suo food cost è sbagliato di partenza — di quasi il duecento percento su quell'ingrediente.</p>
+
+      <p>Alcuni ingredienti perdono peso due volte: una nella lavorazione a freddo, una in cottura. Gli spinaci freschi si comprano a 2,50€/kg, ma tra pulizia e calo termico in cottura la resa totale scende al 43% — il costo reale nel piatto sale quasi a 9€/kg. Chi non calcola questo costruisce ricette e prezzi su numeri che non esistono.</p>
+
+      <table class="yield">
+        <tr><th>Prodotto</th><th>Resa lavorazione</th><th>Calo cottura</th><th>Resa totale</th></tr>
+        <tr><td>Filetto di manzo</td><td>88%</td><td>30%</td><td>62%</td></tr>
+        <tr><td>Petto di pollo</td><td>92%</td><td>25%</td><td>69%</td></tr>
+        <tr><td>Vongole veraci</td><td>38%</td><td>5%</td><td>36%</td></tr>
+        <tr><td>Spinaci freschi</td><td>72%</td><td>40%</td><td>43%</td></tr>
+        <tr><td>Patate</td><td>82%</td><td>8%</td><td>75%</td></tr>
+      </table>
+
+      <div class="culprit-box">
+        <div class="num">Colpevole 2</div>
+        <div class="title">Lo scarto</div>
+        <p style="margin-bottom:0;">Non solo quello ovvio — la verdura che marcisce, il pane di ieri. C'è uno scarto molto più subdolo: quello operativo invisibile. Il fondo del barattolo non raschiato, la salsa preparata in eccesso e buttata a fine sera, il pezzo di carne tagliato male.</p>
+      </div>
+
+      <p>In un ristorante medio, lo scarto invisibile vale tra il 4% e l'8% della spesa totale in materie prime. Su ottantamila euro annui di acquisti, significa tra tremila e seimila euro l'anno che escono dalla cucina senza produrre niente.</p>
+
+      <div class="culprit-box">
+        <div class="num">Colpevole 3</div>
+        <div class="title">La porzione</div>
+        <p style="margin-bottom:0;">Il più difficile da affrontare, perché dipende dalle persone. I cuochi italiani sono generosi per formazione e temperamento. Mettere un po' di più è un gesto quasi istintivo — bellissimo, e costoso quando non è controllato.</p>
+      </div>
+
+      <p>La ricetta di Lorenzo prevede 350 grammi di vongole crude per porzione. Ma Lorenzo non pesa. Una sera di fine luglio, con il locale pieno, prende una manciata abbondante: 480 grammi. Centotrentadue grammi in più, al costo reale della polpa, valgono:</p>
+
+      <div class="calc-line"><span>0,132 kg × €25,79 di costo aggiuntivo per porzione</span><span class="result">€3,40</span></div>
+
+      <div class="result-box">
+        <div class="label">In un anno</div>
+        <div class="value">€12.240 di margine evaporato — solo nelle vongole a occhio</div>
+        <div class="sub">Non perché Lorenzo sia un cattivo ristoratore. Perché le mani, anche le mani esperte, non sono una bilancia.</div>
+      </div>
+
+      <h2>La deviazione: quando teorico e reale divergono</h2>
+
+      <p>Resa, scarto e porzione insieme producono quello che si chiama deviazione — la distanza tra il food cost che pensiamo di avere e quello che abbiamo davvero.</p>
+
+      <div class="formula-box" style="background:var(--terra-xl); border-radius:4px; padding:24px 28px; margin:28px 0; font-family:var(--serif); font-size:16px; font-weight:600; color:var(--ink); text-align:center;">Food Cost Reale % = (Inventario iniziale + Acquisti − Inventario finale) ÷ Ricavi × 100</div>
+
+      <p>Se il food cost teorico è 24,3% e quello reale è 28,9%, la deviazione è di 4,6 punti percentuali. Su ventottomila euro di fatturato mensile: €1.288 di margine perso in un mese, €15.456 in un anno. Non per la crisi. Non per i prezzi che salgono. Per resa non calcolata, scarto non monitorato e porzioni non standardizzate. Tre problemi tecnici, con tre soluzioni altrettanto tecniche.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <p><strong>Sai qual è la deviazione reale del tuo food cost?</strong><br>Ti aiuto a calcolare resa, scarto e porzione sui tuoi piatti principali — e a trovare dove il margine sta evaporando.</p>
+      <a href="/#contact" class="btn btn-terra">Parliamo del tuo food cost →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-name">Daniele Scano</div>
+        <div class="footer-logo-sub">Gestione Ristorante</div>
+        <p class="footer-desc">Consulente e formatore per il settore horeca in Sardegna. Dal 2008 aiuto ristoratori a costruire attività redditizie e organizzate.</p>
+      </div>
+      <div>
+        <div class="footer-col-label">Servizi</div>
+        <ul class="footer-links">
+          <li><a href="/consulenza">Consulenza gestionale</a></li>
+          <li><a href="/formazione">Corsi di formazione</a></li>
+          <li><a href="/gestione-digitale">Gestione digitale</a></li>
+          <li><a href="/#libro">Il libro</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Informazioni</div>
+        <ul class="footer-links">
+          <li><a href="/#about">Chi sono</a></li>
+          <li><a href="/#results">Risultati</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#contact">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Contatti</div>
+        <ul class="footer-links">
+          <li><a href="mailto:info@danielescano.com">info@danielescano.com</a></li>
+          <li><a href="https://www.danielescano.com">www.danielescano.com</a></li>
+          <li><a href="#">Sassari, Sardegna</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Daniele Scano · Gestione Ristorante – Ditta individuale di Daniele Scano</div>
+      <div class="footer-piva">P.IVA: 02704310202 · <a href="/privacy-policy" style="color:rgba(255,255,255,.3);">Privacy Policy</a> · <a href="/cookie-policy" style="color:rgba(255,255,255,.3);">Cookie Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

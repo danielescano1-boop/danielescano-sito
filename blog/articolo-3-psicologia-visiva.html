@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Psicologia Visiva: dove cade l'occhio del tuo cliente? | Daniele Scano</title>
+  <meta name="description" content="Le cinque leve della psicologia del menu, e un caso reale: come tre micro-azioni a costo zero hanno raddoppiato le vendite di un piatto." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --white: #FAFAF8; --paper: #F0EDE8; --ink: #1C1C1A; --ink-2: #3D3D3A; --ink-3: #6B6560;
+      --terra: #C1614A; --terra-l: #E8A087; --terra-xl: #F5EDE6; --border: #E2DDD8;
+      --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Epilogue', system-ui, sans-serif; --max: 1100px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--terra); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-family: var(--sans); font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all .22s; border-radius: 3px; }
+    .btn-terra { background: var(--terra); color: #fff; }
+    .btn-terra:hover { background: #A8503C; transform: translateY(-1px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; background: rgba(250,250,248,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-name { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink); }
+    .nav-logo-sub { font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-3); transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta { color: var(--terra); font-weight: 600; }
+
+    .article-header { padding: 150px 0 60px; background: var(--paper); }
+    .breadcrumb { font-size: 13px; color: var(--ink-3); margin-bottom: 24px; }
+    .breadcrumb a { color: var(--terra); font-weight: 600; }
+    .article-header h1 { font-family: var(--serif); font-size: clamp(32px,4.5vw,52px); font-weight: 700; line-height: 1.15; margin-bottom: 20px; max-width: 780px; }
+    .article-header-meta { display: flex; gap: 20px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
+    .article-header-meta span::before { content: '·'; margin-right: 20px; color: var(--border); }
+    .article-header-meta span:first-child::before { content: none; margin-right: 0; }
+
+    .article-body { padding: 70px 0 100px; }
+    .article-content { max-width: 700px; margin: 0 auto; }
+    .article-content p { font-size: 17px; color: var(--ink-2); line-height: 1.85; margin-bottom: 24px; }
+    .article-content h2 { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); margin: 52px 0 22px; line-height: 1.25; }
+    .article-content blockquote { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ink); border-left: 3px solid var(--terra); padding-left: 24px; margin: 32px 0; line-height: 1.6; }
+    .article-content strong { color: var(--ink); font-weight: 600; }
+
+    .lever-list { list-style: none; margin: 28px 0; display: flex; flex-direction: column; gap: 22px; }
+    .lever-item { display: flex; gap: 18px; }
+    .lever-num { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--terra); flex-shrink: 0; line-height: 1; }
+    .lever-title { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .lever-text { font-size: 15px; color: var(--ink-2); line-height: 1.75; }
+
+    .result-box { background: var(--terra-xl); border-radius: 4px; padding: 28px 32px; margin: 32px 0; }
+    .result-box .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--terra); margin-bottom: 10px; }
+    .result-box .value { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); }
+    .result-box .sub { font-size: 14px; color: var(--ink-2); margin-top: 4px; }
+
+    .article-cta { max-width: 700px; margin: 60px auto 0; background: var(--ink); border-radius: 6px; padding: 40px 44px; text-align: center; }
+    .article-cta p { color: rgba(255,255,255,.6); font-size: 15px; margin-bottom: 20px; }
+    .article-cta p strong { color: #fff; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; } nav { padding: 0 24px; } .nav-links { display: none; }
+      .article-content p { font-size: 16px; } .article-cta { padding: 32px 24px; }
+    }
+
+    footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 72px 0 32px; margin-top: 60px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-logo-name { font-family: var(--serif); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .footer-logo-sub { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--terra); margin-bottom: 16px; font-weight: 600; }
+    .footer-desc { font-size: 14px; color: rgba(255,255,255,.38); line-height: 1.75; max-width: 260px; }
+    .footer-col-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,.45); transition: color .18s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy, .footer-piva { font-size: 12px; color: rgba(255,255,255,.25); }
+    @media (max-width: 768px) { .footer-top { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-name">Daniele Scano</span>
+      <span class="nav-logo-sub">Gestione Ristorante</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#about">Chi sono</a>
+      <a href="/#services">Servizi</a>
+      <a href="/#results">Risultati</a>
+      <a href="/blog" class="nav-cta">Blog</a>
+      <a href="/#contact" class="nav-cta">Parliamo →</a>
+    </div>
+  </div>
+</nav>
+
+<section class="article-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="/blog">← Torna al blog</a></div>
+    <div class="eyebrow">Menu Engineering</div>
+    <h1 style="margin-top:16px;">Psicologia Visiva: dove cade l'occhio del tuo cliente?</h1>
+    <div class="article-header-meta">
+      <span>Daniele Scano</span>
+      <span>7 min di lettura</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-body">
+  <div class="container">
+    <div class="article-content">
+
+      <p>Marco ha un ristorante di mare sulla costa adriatica. Il suo piatto più venduto è il fritto misto — duecentottantacinque porzioni al mese. Ne è orgoglioso, e ha ragione di esserlo.</p>
+
+      <p>Ma quando guardiamo i numeri insieme, la grigliata del pescatore — che esce solo quarantotto volte al mese — genera quasi diciannove euro di margine ogni volta. Il fritto misto, il suo "campione", ne genera undici e settanta: meno di due terzi.</p>
+
+      <p><em>"E cosa devo fare?"</em> mi ha chiesto Marco.</p>
+
+      <p><em>"Tre cose. Piccole. A costo zero."</em></p>
+
+      <p>Prima di arrivare a quelle tre cose, però, dobbiamo capire qualcosa di fondamentale sul modo in cui i clienti leggono un menu.</p>
+
+      <h2>Non lo leggono. Lo scansionano.</h2>
+
+      <p>Un cliente medio dedica tra i novanta secondi e i tre minuti alla lettura del menu prima di scegliere. In quel tempo non legge ogni voce con attenzione — il suo occhio segue un percorso preciso, si ferma su certi punti, salta altri quasi completamente.</p>
+
+      <p>Questo percorso non è casuale. È stato studiato per decenni da ricercatori di marketing e consulenti di menu design, e produce risultati abbastanza consistenti da permettere di prevedere dove atterrerà l'occhio di un cliente che apre il menu per la prima volta.</p>
+
+      <p>Su una pagina, la zona di massima attenzione è in genere <strong>in alto al centro</strong> — il primo punto dove l'occhio si ferma. La seconda zona è <strong>in alto a destra</strong>. La terza è al <strong>centro della pagina</strong>, specialmente se c'è un elemento grafico che la segnala.</p>
+
+      <p>Le zone di minore attenzione sono in basso a sinistra e nelle sezioni centrali di liste lunghe — dove le voci si perdono in una fila uniforme di alternative identiche.</p>
+
+      <p>Questo significa che la posizione di un piatto nel menu non è una questione estetica. È una scelta commerciale. Mettere un Puzzle — alto margine, poco ordinato — nella zona di massima attenzione è il gesto più semplice e più potente per aumentarne le vendite, senza cambiare la ricetta, senza abbassare il prezzo.</p>
+
+      <h2>Le cinque leve della psicologia del menu</h2>
+
+      <ul class="lever-list">
+        <li class="lever-item">
+          <div class="lever-num">1</div>
+          <div>
+            <div class="lever-title">La descrizione evocativa</div>
+            <div class="lever-text">Confrontiamo due modi di presentare lo stesso piatto: <em>"Branzino al sale"</em> contro <em>"Branzino selvatico del Mediterraneo, ricoperto di sale marino e cotto lentamente nel forno a legna. La crosta si rompe al tavolo, davanti a voi."</em> Stesso costo di produzione. Il secondo si vende significativamente di più — non perché il piatto sia cambiato, ma perché il cliente ora capisce cosa sta per mangiare.</div>
+          </div>
+        </li>
+        <li class="lever-item">
+          <div class="lever-num">2</div>
+          <div>
+            <div class="lever-title">L'ancora di prezzo</div>
+            <div class="lever-text">Un piatto volutamente costoso in cima a una sezione non serve necessariamente a essere venduto — serve a far sembrare ragionevoli tutti gli altri prezzi della sezione. Un plateau di frutti di mare a 55€ fa sembrare la grigliata a 32€ la scelta intelligente tra qualità e prezzo.</div>
+          </div>
+        </li>
+        <li class="lever-item">
+          <div class="lever-num">3</div>
+          <div>
+            <div class="lever-title">Il box grafico</div>
+            <div class="lever-text">Un riquadro, una stella, la scritta "Lo chef consiglia" attira l'occhio tre o quattro volte di più della lista normale. Va usato con parsimonia — non più di due o tre elementi per sezione. Se tutto è evidenziato, niente lo è.</div>
+          </div>
+        </li>
+        <li class="lever-item">
+          <div class="lever-num">4</div>
+          <div>
+            <div class="lever-title">La posizione nella lista</div>
+            <div class="lever-text">Il primo e l'ultimo piatto di ogni sezione vengono ricordati meglio degli altri — l'effetto di primacy e recency. Posizionare un Puzzle in prima o terza posizione aumenta le probabilità che venga notato e scelto, senza nessun'altra modifica.</div>
+          </div>
+        </li>
+        <li class="lever-item">
+          <div class="lever-num">5</div>
+          <div>
+            <div class="lever-title">Il prezzo senza simbolo €</div>
+            <div class="lever-text">Scrivere "18" invece di "€18,00" riduce quello che i ricercatori chiamano il "dolore del pagamento" — una ricerca della Cornell University ha misurato un aumento della spesa media al tavolo del 3-4% semplicemente rimuovendo il simbolo della valuta.</div>
+          </div>
+        </li>
+      </ul>
+
+      <h2>Le tre micro-azioni di Marco</h2>
+
+      <p>Tornando a Marco: cosa fare con la grigliata del pescatore, il Puzzle da diciotto euro e sessanta di margine che esce quarantotto volte al mese invece delle centocinquanta che potrebbe? Tre cose, a costo zero.</p>
+
+      <p><strong>Spostarla.</strong> Era l'ultima voce della sezione secondi — la zona più fredda del menu. Nuova posizione: prima voce, con box grafico dedicato e una descrizione che raccontava la provenienza del pesce invece di limitarsi a elencarlo.</p>
+
+      <p><strong>Costruire un'ancora.</strong> Un plateau di frutti di mare a 55€ inserito all'inizio della sezione. Non per venderlo necessariamente — per rendere la grigliata a 32€ la scelta intelligente.</p>
+
+      <p><strong>La frase del cameriere.</strong> Un briefing di dieci minuti prima del servizio: <em>"Stasera, a ogni tavolo, nominate la grigliata del pescatore. Dite che il pesce è arrivato stamattina."</em> Una frase, autentica, per tavolo.</p>
+
+      <div class="result-box">
+        <div class="label">Risultato in otto mesi</div>
+        <div class="value">48 → 112 porzioni/mese</div>
+        <div class="sub">Margine aggiuntivo: +€1.190 al mese · +€9.523 sulla stagione — a costo zero</div>
+      </div>
+
+      <p><em>"La cucina era la stessa,"</em> ha detto Marco. <em>"Il pesce era lo stesso. L'unica cosa che ho cambiato è come raccontavo quello che facevo."</em></p>
+
+    </div>
+
+    <div class="article-cta">
+      <p><strong>Vuoi trovare i Puzzle nascosti nel tuo menu?</strong><br>Analizzo margini, popolarità e posizionamento del tuo menu in un incontro conoscitivo.</p>
+      <a href="/#contact" class="btn btn-terra">Parliamo del tuo menu →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-name">Daniele Scano</div>
+        <div class="footer-logo-sub">Gestione Ristorante</div>
+        <p class="footer-desc">Consulente e formatore per il settore horeca in Sardegna. Dal 2008 aiuto ristoratori a costruire attività redditizie e organizzate.</p>
+      </div>
+      <div>
+        <div class="footer-col-label">Servizi</div>
+        <ul class="footer-links">
+          <li><a href="/consulenza">Consulenza gestionale</a></li>
+          <li><a href="/formazione">Corsi di formazione</a></li>
+          <li><a href="/gestione-digitale">Gestione digitale</a></li>
+          <li><a href="/#libro">Il libro</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Informazioni</div>
+        <ul class="footer-links">
+          <li><a href="/#about">Chi sono</a></li>
+          <li><a href="/#results">Risultati</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#contact">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Contatti</div>
+        <ul class="footer-links">
+          <li><a href="mailto:info@danielescano.com">info@danielescano.com</a></li>
+          <li><a href="https://www.danielescano.com">www.danielescano.com</a></li>
+          <li><a href="#">Sassari, Sardegna</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Daniele Scano · Gestione Ristorante – Ditta individuale di Daniele Scano</div>
+      <div class="footer-piva">P.IVA: 02704310202 · <a href="/privacy-policy" style="color:rgba(255,255,255,.3);">Privacy Policy</a> · <a href="/cookie-policy" style="color:rgba(255,255,255,.3);">Cookie Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

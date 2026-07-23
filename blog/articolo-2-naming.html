@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'Arte del Naming: nomi che vendono il 30% in più | Daniele Scano</title>
+  <meta name="description" content="Le tecniche di naming che spostano davvero le vendite di un menu — con casi reali e prima/dopo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --white:      #FAFAF8;
+      --paper:      #F0EDE8;
+      --ink:        #1C1C1A;
+      --ink-2:      #3D3D3A;
+      --ink-3:      #6B6560;
+      --terra:      #C1614A;
+      --terra-l:    #E8A087;
+      --terra-xl:   #F5EDE6;
+      --border:     #E2DDD8;
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'Epilogue', system-ui, sans-serif;
+      --max:        1100px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--ink); font-family: var(--sans); font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--terra); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-family: var(--sans); font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all .22s; border-radius: 3px; }
+    .btn-dark { background: var(--ink); color: var(--white); }
+    .btn-dark:hover { background: var(--ink-2); transform: translateY(-1px); }
+    .btn-terra { background: var(--terra); color: #fff; }
+    .btn-terra:hover { background: #A8503C; transform: translateY(-1px); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; background: rgba(250,250,248,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-name { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink); }
+    .nav-logo-sub { font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-3); transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta { color: var(--terra); font-weight: 600; }
+
+    /* ARTICLE HEADER */
+    .article-header { padding: 150px 0 60px; background: var(--paper); }
+    .breadcrumb { font-size: 13px; color: var(--ink-3); margin-bottom: 24px; }
+    .breadcrumb a { color: var(--terra); font-weight: 600; }
+    .article-header h1 { font-family: var(--serif); font-size: clamp(32px,4.5vw,52px); font-weight: 700; line-height: 1.15; margin-bottom: 20px; max-width: 780px; }
+    .article-header-meta { display: flex; gap: 20px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
+    .article-header-meta span::before { content: '·'; margin-right: 20px; color: var(--border); }
+    .article-header-meta span:first-child::before { content: none; margin-right: 0; }
+
+    /* ARTICLE BODY */
+    .article-body { padding: 70px 0 100px; }
+    .article-content { max-width: 700px; margin: 0 auto; }
+    .article-content p { font-size: 17px; color: var(--ink-2); line-height: 1.85; margin-bottom: 24px; }
+    .article-content h2 { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); margin: 52px 0 22px; line-height: 1.25; }
+    .article-content blockquote {
+      font-family: var(--serif); font-style: italic; font-size: 21px; color: var(--ink);
+      border-left: 3px solid var(--terra); padding-left: 24px; margin: 36px 0; line-height: 1.6;
+    }
+    .article-content strong { color: var(--ink); font-weight: 600; }
+    .article-cta {
+      max-width: 700px; margin: 60px auto 0; background: var(--ink); border-radius: 6px;
+      padding: 40px 44px; text-align: center;
+    }
+    .article-cta p { color: rgba(255,255,255,.6); font-size: 15px; margin-bottom: 20px; }
+    .article-cta p strong { color: #fff; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .article-content p { font-size: 16px; }
+      .article-cta { padding: 32px 24px; }
+    }
+
+    /* FOOTER */
+    footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 72px 0 32px; margin-top: 60px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-logo-name { font-family: var(--serif); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .footer-logo-sub { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--terra); margin-bottom: 16px; font-weight: 600; }
+    .footer-desc { font-size: 14px; color: rgba(255,255,255,.38); line-height: 1.75; max-width: 260px; }
+    .footer-col-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,.45); transition: color .18s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
+    .footer-piva { font-size: 12px; color: rgba(255,255,255,.25); }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-name">Daniele Scano</span>
+      <span class="nav-logo-sub">Gestione Ristorante</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#about">Chi sono</a>
+      <a href="/#services">Servizi</a>
+      <a href="/#results">Risultati</a>
+      <a href="/blog" class="nav-cta">Blog</a>
+      <a href="/#contact" class="nav-cta">Parliamo →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ARTICLE HEADER -->
+<section class="article-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="/blog">← Torna al blog</a></div>
+    <div class="eyebrow">Menu Engineering</div>
+    <h1 style="margin-top:16px;">L'Arte del Naming: come dare ai tuoi piatti nomi che vendono il 30% in più</h1>
+    <div class="article-header-meta">
+      <span>Daniele Scano</span>
+      <span>6 min di lettura</span>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<section class="article-body">
+  <div class="container">
+    <div class="article-content">
+
+      <p>C'è un piatto che quasi ogni ristorante di mare ha in carta. Materie prime ottime, esecuzione impeccabile, margine di contribuzione tra i più alti del menu.</p>
+
+      <p>Eppure non lo ordina quasi nessuno.</p>
+
+      <p>Non è un problema di cucina. È un problema di nome.</p>
+
+      <h2>Il piatto che si chiamava "Polpo"</h2>
+
+      <p>Un cliente con cui lavoro aveva in menu una voce che diceva semplicemente: <em>Polpo</em>. Sotto, una breve descrizione tecnica: cottura, guarnizione, contorno. Tutto corretto. Tutto dimenticabile.</p>
+
+      <p>Quel piatto usciva otto volte al mese. Un Puzzle nella matrice di Menu Engineering — alto margine, bassa popolarità. Il tesoro nascosto che non emerge mai da solo.</p>
+
+      <p>Lo abbiamo rinominato <strong>Polpo Brace & Lime</strong> — stessa ricetta, stessa cucina, stesso costo. Solo il nome è cambiato, insieme a una riga di descrizione che raccontava la tecnica: <em>polpo cotto lento, scottato alla brace, su crema di patata dolce aromatizzata al lime.</em></p>
+
+      <p>In sei settimane le uscite mensili sono più che raddoppiate.</p>
+
+      <p>Non è magia. È il meccanismo con cui il cervello di chi legge un menu decide cosa ordinare — e quel meccanismo si può conoscere, e usare.</p>
+
+      <h2>Perché il nome pesa più della ricetta</h2>
+
+      <p>Il tempo medio che un cliente dedica alla lettura di un menu è di circa tre minuti. In quei tre minuti, l'occhio scansiona — non legge riga per riga. Un nome che comunica subito un'emozione o un'aspettativa cattura l'attenzione. Un nome generico ("Tagliere", "Selezione di crudi", "Dessert del giorno") viene scansionato e dimenticato nello stesso istante.</p>
+
+      <p>Il food cost, la resa, la scheda tecnica: tutto quello che serve a sapere <em>quali</em> piatti spingere. Il naming è lo strumento che li fa notare — e sceglierli — davvero.</p>
+
+      <h2>Quattro tecniche che funzionano</h2>
+
+      <p><strong>1. Il nome parlante</strong></p>
+
+      <p>Comunica in una parola cosa aspettarsi, senza bisogno della descrizione. "Tonno a Coltello" dice già tecnica, artigianalità, freschezza — molto più di "Tartare di tonno agli agrumi". Tre parole, impatto immediato.</p>
+
+      <p><strong>2. Crasi e allitterazioni</strong></p>
+
+      <p>Fondere due parole in una crea qualcosa di nuovo e memorabile: pensate a come certi nomi di prodotti restano in testa proprio per questo gioco linguistico. L'allitterazione funziona allo stesso modo — "Pasta, Patate e Provola" è più orecchiabile di "Pasta con patate e provola", pur dicendo la stessa cosa.</p>
+
+      <p><strong>3. La tecnica del contare</strong></p>
+
+      <p>Dare un numero preciso agli ingredienti genera curiosità e comunica precisione: "Quattro Gusci + Uno" (capasanta, ostrica, cozze, gamberi e scampi gratinati, "più uno" a sorpresa secondo disponibilità) fa una domanda implicita che il cliente vuole risolvere ordinando.</p>
+
+      <p><strong>4. Lo shock leggero</strong></p>
+
+      <p>Un nome volutamente irriverente, che i concorrenti non si sognerebbero mai di usare, genera sorpresa e si ricorda. Va dosato — funziona per un piatto signature o per un dessert, non per l'intero menu. Un nome così, usato una sola volta in carta, diventa il piatto di cui i clienti parlano ancora uscendo dal locale.</p>
+
+      <h2>La descrizione fa il resto</h2>
+
+      <p>Il nome cattura l'attenzione. La descrizione la trasforma in valore percepito. Confrontiamo due modi di presentare lo stesso piatto:</p>
+
+      <blockquote>"Branzino al sale."</blockquote>
+
+      <blockquote>"Branzino selvatico del Mediterraneo, ricoperto di sale marino e cotto lentamente nel forno a legna. La crosta si rompe al tavolo, davanti a voi."</blockquote>
+
+      <p>Stesso piatto, stesso costo di produzione. Il secondo si vende di più e giustifica un prezzo più alto — non perché sia cambiato qualcosa in cucina, ma perché il cliente ora capisce cosa sta per mangiare, come è fatto, perché vale il prezzo che vede accanto.</p>
+
+      <p>Ogni parola in più nella descrizione di un Puzzle è un investimento a ritorno immediato. Ogni parola generica in un piatto ad alto margine è un'occasione persa.</p>
+
+      <h2>Da dove iniziare</h2>
+
+      <p>Non serve rifare tutto il menu in un pomeriggio. Il principio dell'80/20 vale anche qui: prendete i due o tre Puzzle del vostro menu — quelli con margine alto e vendite basse — e lavorate solo su quelli.</p>
+
+      <p>Un nome nuovo, una descrizione che racconta la tecnica invece di elencare gli ingredienti, e la prossima stampa del menu diventa un piccolo esperimento con un ritorno che si misura in poche settimane.</p>
+
+      <p>Non ci vuole un copywriter. Ci vuole la stessa attenzione che mettete già in cucina, spostata di un passo — sulla pagina che il cliente legge prima di assaggiare qualsiasi cosa.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <p><strong>Vuoi lavorare sul naming del tuo menu?</strong><br>Analizzo food cost, margini e naming dei tuoi piatti in un incontro conoscitivo.</p>
+      <a href="/#contact" class="btn btn-terra">Parliamo del tuo menu →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-name">Daniele Scano</div>
+        <div class="footer-logo-sub">Gestione Ristorante</div>
+        <p class="footer-desc">Consulente e formatore per il settore horeca in Sardegna. Dal 2008 aiuto ristoratori a costruire attività redditizie e organizzate.</p>
+      </div>
+      <div>
+        <div class="footer-col-label">Servizi</div>
+        <ul class="footer-links">
+          <li><a href="/consulenza">Consulenza gestionale</a></li>
+          <li><a href="/formazione">Corsi di formazione</a></li>
+          <li><a href="/gestione-digitale">Gestione digitale</a></li>
+          <li><a href="/#libro">Il libro</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Informazioni</div>
+        <ul class="footer-links">
+          <li><a href="/#about">Chi sono</a></li>
+          <li><a href="/#results">Risultati</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#contact">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Contatti</div>
+        <ul class="footer-links">
+          <li><a href="mailto:info@danielescano.com">info@danielescano.com</a></li>
+          <li><a href="https://www.danielescano.com">www.danielescano.com</a></li>
+          <li><a href="#">Sassari, Sardegna</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Daniele Scano · Gestione Ristorante – Ditta individuale di Daniele Scano</div>
+      <div class="footer-piva">P.IVA: 02704310202 · <a href="/privacy-policy" style="color:rgba(255,255,255,.3);">Privacy Policy</a> · <a href="/cookie-policy" style="color:rgba(255,255,255,.3);">Cookie Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

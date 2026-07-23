@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Daniele Scano – Gestione Ristorante</title>
+  <meta name="description" content="Articoli pratici su food cost, menu engineering e gestione ristorante. Idee concrete da applicare subito nel tuo locale." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --white:      #FAFAF8;
+      --paper:      #F0EDE8;
+      --ink:        #1C1C1A;
+      --ink-2:      #3D3D3A;
+      --ink-3:      #6B6560;
+      --terra:      #C1614A;
+      --terra-l:    #E8A087;
+      --terra-xl:   #F5EDE6;
+      --border:     #E2DDD8;
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'Epilogue', system-ui, sans-serif;
+      --max:        1100px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--ink); font-family: var(--sans); font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--terra); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-family: var(--sans); font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all .22s; border-radius: 3px; }
+    .btn-dark { background: var(--ink); color: var(--white); }
+    .btn-dark:hover { background: var(--ink-2); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+    .btn-outline:hover { background: var(--ink); color: var(--white); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; background: rgba(250,250,248,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-name { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink); }
+    .nav-logo-sub { font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-3); transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta { color: var(--terra); font-weight: 600; }
+
+    /* HERO */
+    .page-hero { padding: 160px 0 80px; background: var(--paper); }
+    .page-hero h1 { font-family: var(--serif); font-size: clamp(36px,5vw,58px); font-weight: 700; line-height: 1.1; margin: 16px 0 20px; }
+    .page-hero p { font-size: 17px; font-weight: 300; color: var(--ink-3); line-height: 1.75; max-width: 520px; }
+
+    /* ARTICLE LIST */
+    .articles { padding: 90px 0 140px; }
+    .article-row {
+      display: grid; grid-template-columns: 1fr 2fr;
+      gap: 48px; padding: 44px 0; border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .article-row:first-child { padding-top: 0; }
+    .article-meta-col { display: flex; flex-direction: column; gap: 10px; }
+    .article-num { font-family: var(--serif); font-size: 15px; color: var(--terra); font-weight: 700; }
+    .article-cat { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+    .article-time { font-size: 12px; color: var(--ink-3); }
+    .article-title { font-family: var(--serif); font-size: 28px; font-weight: 700; line-height: 1.25; margin-bottom: 14px; }
+    .article-excerpt { font-size: 15px; color: var(--ink-2); line-height: 1.75; margin-bottom: 20px; max-width: 620px; }
+    .article-link { font-size: 14px; font-weight: 600; color: var(--terra); display: inline-flex; align-items: center; gap: 6px; transition: gap .18s; }
+    .article-link:hover { gap: 10px; }
+    .article-row.upcoming { opacity: .5; }
+    .article-row.upcoming .article-link { color: var(--ink-3); pointer-events: none; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .article-row { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* FOOTER */
+    footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 72px 0 32px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-logo-name { font-family: var(--serif); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .footer-logo-sub { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--terra); margin-bottom: 16px; font-weight: 600; }
+    .footer-desc { font-size: 14px; color: rgba(255,255,255,.38); line-height: 1.75; max-width: 260px; }
+    .footer-col-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,.45); transition: color .18s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
+    .footer-piva { font-size: 12px; color: rgba(255,255,255,.25); }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-name">Daniele Scano</span>
+      <span class="nav-logo-sub">Gestione Ristorante</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#about">Chi sono</a>
+      <a href="/#services">Servizi</a>
+      <a href="/#results">Risultati</a>
+      <a href="/blog" class="nav-cta">Blog</a>
+      <a href="/#contact" class="nav-cta">Parliamo →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="eyebrow">Blog</div>
+    <h1>Idee concrete per il tuo locale</h1>
+    <p>Food cost, menu engineering, psicologia del menu e pricing — articoli pratici, senza teoria accademica, da applicare da subito nel tuo ristorante.</p>
+  </div>
+</section>
+
+<!-- ARTICLES LIST -->
+<section class="articles">
+  <div class="container">
+
+    <div class="article-row">
+      <div class="article-meta-col">
+        <div class="article-num">01</div>
+        <div class="article-cat">Menu Engineering</div>
+        <div class="article-time">8 min di lettura</div>
+      </div>
+      <div>
+        <h2 class="article-title">Trasforma il tuo menu in una macchina da profitti: la matrice Stars/Dogs</h2>
+        <p class="article-excerpt">Hai mai fatto questo calcolo? Prendi il tuo piatto più ordinato e chiediti: quanto mi rimane in tasca ogni volta che lo vendo? La matrice di Menu Engineering — Stars, Plowhorses, Puzzles, Dogs — è lo strumento che separa le emozioni dai numeri e ti dice esattamente quali piatti spingere, quali ottimizzare e quali eliminare senza rimpianti.</p>
+        <a href="/blog/articolo-1-menu-engineering" class="article-link">Leggi l'articolo →</a>
+      </div>
+    </div>
+
+    <div class="article-row">
+      <div class="article-meta-col">
+        <div class="article-num">02</div>
+        <div class="article-cat">Menu Engineering</div>
+        <div class="article-time">6 min di lettura</div>
+      </div>
+      <div>
+        <h2 class="article-title">L'Arte del Naming: come dare ai tuoi piatti nomi che vendono il 30% in più</h2>
+        <p class="article-excerpt">C'è un piatto che quasi ogni ristorante di mare ha in carta — ottimo, ben eseguito, alto margine — che però non ordina quasi nessuno. Non è un problema di cucina. È un problema di nome. Ecco le tecniche di naming che spostano davvero le vendite, con un caso reale: da 8 a oltre 18 uscite al mese, stessa ricetta, stesso costo.</p>
+        <a href="/blog/articolo-2-naming" class="article-link">Leggi l'articolo →</a>
+      </div>
+    </div>
+
+    <div class="article-row">
+      <div class="article-meta-col">
+        <div class="article-num">03</div>
+        <div class="article-cat">Menu Engineering</div>
+        <div class="article-time">7 min di lettura</div>
+      </div>
+      <div>
+        <h2 class="article-title">Psicologia Visiva: dove cade l'occhio del tuo cliente?</h2>
+        <p class="article-excerpt">Il cliente non legge il menu, lo scansiona. Le cinque leve — descrizione evocativa, ancora di prezzo, box grafico, posizione nella lista, presentazione del prezzo — che decidono cosa viene ordinato. Con un caso reale: come tre micro-azioni a costo zero hanno più che raddoppiato le vendite di un piatto.</p>
+        <a href="/blog/articolo-3-psicologia-visiva" class="article-link">Leggi l'articolo →</a>
+      </div>
+    </div>
+
+    <div class="article-row">
+      <div class="article-meta-col">
+        <div class="article-num">04</div>
+        <div class="article-cat">Pricing</div>
+        <div class="article-time">6 min di lettura</div>
+      </div>
+      <div>
+        <h2 class="article-title">Strategie di Pricing: non far confrontare i prezzi ai tuoi clienti</h2>
+        <p class="article-excerpt">I prezzi allineati in colonna sono il modo più efficace per far scegliere al cliente il piatto più economico. Ancoraggio, prezzi charm, ordine strategico delle voci: come strutturare il menu perché il cliente scelga in base al valore percepito, non al confronto tra numeri.</p>
+        <a href="/blog/articolo-4-pricing" class="article-link">Leggi l'articolo →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-name">Daniele Scano</div>
+        <div class="footer-logo-sub">Gestione Ristorante</div>
+        <p class="footer-desc">Consulente e formatore per il settore horeca in Sardegna. Dal 2008 aiuto ristoratori a costruire attività redditizie e organizzate.</p>
+      </div>
+      <div>
+        <div class="footer-col-label">Servizi</div>
+        <ul class="footer-links">
+          <li><a href="/consulenza">Consulenza gestionale</a></li>
+          <li><a href="/formazione">Corsi di formazione</a></li>
+          <li><a href="/gestione-digitale">Gestione digitale</a></li>
+          <li><a href="/#libro">Il libro</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Informazioni</div>
+        <ul class="footer-links">
+          <li><a href="/#about">Chi sono</a></li>
+          <li><a href="/#results">Risultati</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#contact">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Contatti</div>
+        <ul class="footer-links">
+          <li><a href="mailto:info@danielescano.com">info@danielescano.com</a></li>
+          <li><a href="https://www.danielescano.com">www.danielescano.com</a></li>
+          <li><a href="#">Sassari, Sardegna</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Daniele Scano · Gestione Ristorante – Ditta individuale di Daniele Scano</div>
+      <div class="footer-piva">P.IVA: 02704310202 · <a href="/privacy-policy" style="color:rgba(255,255,255,.3);">Privacy Policy</a> · <a href="/cookie-policy" style="color:rgba(255,255,255,.3);">Cookie Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

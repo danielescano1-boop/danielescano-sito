@@ -262,13 +262,10 @@
     .book { padding: 120px 0; background: var(--ink); }
     .book-inner { display: grid; grid-template-columns: auto 1fr; gap: 72px; align-items: center; max-width: 820px; margin: 0 auto; }
     .book-cover {
-      width: 180px; height: 260px; border-radius: 4px;
-      background: linear-gradient(160deg, #C1614A 0%, #8B3A27 100%);
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px; flex-shrink: 0;
+      width: 180px; border-radius: 4px;
+      flex-shrink: 0;
       box-shadow: 8px 8px 0 rgba(0,0,0,.3), -2px 0 0 rgba(255,255,255,.05);
     }
-    .book-cover-title { font-family: var(--serif); font-size: 15px; color: rgba(255,255,255,.9); font-weight: 700; line-height: 1.4; text-align: center; }
     .book-eyebrow { color: var(--terra-l); margin-bottom: 14px; }
     .book-h2 { font-family: var(--serif); font-size: clamp(24px,3vw,36px); font-weight:700; color:#fff; line-height:1.2; margin-bottom:18px; }
     .book-text { font-size: 15px; font-weight:300; color: rgba(255,255,255,.5); line-height:1.8; margin-bottom:28px; }
@@ -874,14 +871,15 @@
 <section class="book" id="libro">
   <div class="container">
     <div class="book-inner reveal">
-      <div class="book-cover">
-        <div class="book-cover-title">Il ristorante pieno che non guadagna</div>
-      </div>
+      <img src="/copertina-libro.jpg" alt="Il ristorante pieno che non guadagna - copertina libro" class="book-cover" />
       <div>
         <div class="eyebrow book-eyebrow">Il libro</div>
         <h2 class="book-h2">Il manuale che nessuno ti dà quando apri un ristorante</h2>
         <p class="book-text">Sei personaggi, situazioni reali, problemi che riconoscerai. E gli strumenti concreti per risolverli — dal food cost al menu engineering, fino alla gestione del personale.</p>
-        <a href="#contact" class="btn btn-terra">Scopri il libro →</a>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-terra">Scopri il libro →</a>
+          <a href="/downloads/estratto-gratuito-libro.pdf" download class="btn btn-outline" style="border-color:rgba(255,255,255,.35); color:#fff;">📖 Estratto gratuito</a>
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formazione Horeca – Corsi per Ristoratori – Daniele Scano</title>
+  <meta name="description" content="Corsi di formazione per ristoratori e titolari di bar in Sardegna. Food cost, menu engineering, gestione acquisti. Percorsi multi-sessione pratici e applicabili da subito." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{--ink:#1C1C1A;--ink-2:#3D3D3A;--ink-3:#6B6560;--terra:#C1614A;--terra-l:#E8A087;--terra-xl:#F5EDE6;--paper:#F0EDE8;--white:#FAFAF8;--border:#E2DDD8;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Epilogue',system-ui,sans-serif;--max:1100px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--white);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none;}
+    .container{max-width:var(--max);margin:0 auto;padding:0 40px;}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:3px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
+    .btn-dark{background:var(--ink);color:#fff;} .btn-dark:hover{background:var(--ink-2);}
+    .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink);} .btn-outline:hover{background:var(--ink);color:#fff;}
+    .eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);}
+    nav{position:sticky;top:0;z-index:100;background:rgba(250,250,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 40px;}
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .nav-logo-name{font-family:var(--serif);font-size:19px;font-weight:700;}
+    .nav-logo-sub{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;}
+    .nav-back{font-size:13px;color:var(--ink-3);} .nav-cta{font-size:13px;font-weight:600;color:var(--terra);}
+    .hero{padding:100px 0 80px;background:var(--ink);}
+    .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+    .hero-eyebrow-line{width:28px;height:1px;background:var(--terra);}
+    .hero-h1{font-family:var(--serif);font-size:clamp(36px,5vw,58px);font-weight:700;line-height:1.1;color:#fff;margin-bottom:20px;}
+    .hero-h1 em{font-style:italic;color:var(--terra-l);}
+    .hero-lead{font-size:17px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:36px;max-width:560px;}
+    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+    .btn-light{background:#fff;color:var(--ink);} .btn-light:hover{background:var(--paper);}
+    .btn-ghost-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);} .btn-ghost-white:hover{border-color:#fff;}
+    .hero-stats{display:flex;gap:48px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap;}
+    .hero-stat-num{font-family:var(--serif);font-size:40px;font-weight:700;color:#fff;line-height:1;}
+    .hero-stat-label{font-size:12px;color:rgba(255,255,255,.45);margin-top:5px;}
+    section{padding:100px 0;}
+    .section-alt{background:var(--paper);}
+    .section-h2{font-family:var(--serif);font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;margin:12px 0 14px;}
+    .section-lead{font-size:16px;font-weight:300;color:var(--ink-3);line-height:1.8;}
+    .courses-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:48px;}
+    .course-card{background:var(--white);padding:40px;}
+    .course-card.featured{background:var(--terra);color:#fff;}
+    .course-num{font-family:var(--serif);font-size:13px;color:var(--terra);font-weight:600;margin-bottom:10px;}
+    .course-card.featured .course-num{color:rgba(255,255,255,.6);}
+    .course-title{font-family:var(--serif);font-size:24px;font-weight:700;margin-bottom:10px;line-height:1.2;}
+    .course-card.featured .course-title{color:#fff;}
+    .course-target{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--terra);margin-bottom:16px;}
+    .course-card.featured .course-target{color:rgba(255,255,255,.6);}
+    .course-text{font-size:14px;color:var(--ink-3);line-height:1.75;margin-bottom:20px;}
+    .course-card.featured .course-text{color:rgba(255,255,255,.75);}
+    .course-topics{list-style:none;display:flex;flex-direction:column;gap:7px;}
+    .course-topics li{font-size:13px;display:flex;gap:8px;color:var(--ink-2);}
+    .course-card.featured .course-topics li{color:rgba(255,255,255,.8);}
+    .course-topics li::before{content:'→';color:var(--terra);font-weight:600;flex-shrink:0;}
+    .course-card.featured .course-topics li::before{color:rgba(255,255,255,.6);}
+    .format-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+    .format-item{background:var(--white);padding:32px;border-top:3px solid var(--terra);}
+    .format-icon{font-size:28px;margin-bottom:16px;}
+    .format-title{font-size:16px;font-weight:600;margin-bottom:8px;}
+    .format-text{font-size:14px;color:var(--ink-3);line-height:1.7;}
+    .istitutional{background:var(--ink);padding:80px 0;}
+    .istitutional-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .istitutional h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,38px);font-weight:700;color:#fff;line-height:1.2;margin:12px 0 16px;}
+    .istitutional p{font-size:15px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:12px;}
+    .istitutional-logos{display:flex;flex-direction:column;gap:12px;}
+    .istitutional-logo-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:16px 20px;}
+    .istitutional-logo-name{font-weight:600;color:#fff;font-size:15px;}
+    .istitutional-logo-detail{font-size:13px;color:rgba(255,255,255,.4);margin-top:3px;}
+    .cta-bottom{background:var(--paper);padding:80px 0;}
+    .cta-bottom-inner{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
+    .cta-bottom-h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,38px);font-weight:700;line-height:1.2;margin-bottom:12px;}
+    .cta-bottom-text{font-size:16px;font-weight:300;color:var(--ink-3);line-height:1.75;}
+    footer{background:var(--ink);color:rgba(255,255,255,.3);text-align:center;padding:24px;font-size:12px;}
+    @media(max-width:900px){.courses-grid,.format-grid,.istitutional-inner,.cta-bottom-inner{grid-template-columns:1fr;}}
+    @media(max-width:600px){.container{padding:0 20px;} nav{padding:0 20px;}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/"><div class="nav-logo-name">Daniele Scano</div><div class="nav-logo-sub">Gestione Ristorante</div></a>
+    <div style="display:flex;align-items:center;gap:32px;">
+      <a href="/" class="nav-back">← Tutti i servizi</a>
+      <a href="/#contact" class="nav-cta">Parliamo →</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow"><div class="hero-eyebrow-line"></div><span class="eyebrow" style="color:var(--terra-l)">Formazione</span></div>
+    <h1 class="hero-h1">Non teoria.<br><em>Strumenti che usi<br>dal giorno dopo.</em></h1>
+    <p class="hero-lead">Percorsi formativi multi-sessione per titolari, responsabili e staff del settore horeca. Ogni corso parte dai tuoi dati reali — non da esempi di fantasia.</p>
+    <div class="hero-ctas">
+      <a href="/#contact" class="btn btn-light">Richiedi informazioni →</a>
+      <a href="#corsi" class="btn btn-ghost-white">Vedi i corsi</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">1.000+</div><div class="hero-stat-label">professionisti formati</div></div>
+      <div><div class="hero-stat-num">17</div><div class="hero-stat-label">anni di esperienza sul campo</div></div>
+      <div><div class="hero-stat-num">5+</div><div class="hero-stat-label">enti e associazioni di categoria</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="corsi">
+  <div class="container">
+    <div class="eyebrow">I corsi</div>
+    <h2 class="section-h2">Percorsi formativi disponibili</h2>
+    <p class="section-lead">Ogni percorso è strutturato in più sessioni e si adatta alla realtà specifica del tuo locale. Non esistono corsi uguali per tutti.</p>
+    <div class="courses-grid">
+      <div class="course-card featured">
+        <div class="course-num">01</div>
+        <h3 class="course-title">Food Cost Management</h3>
+        <div class="course-target">Titolari e responsabili acquisti</div>
+        <p class="course-text">Il percorso fondamentale. Impari a calcolare il food cost reale di ogni piatto, costruire le schede ricetta e monitorare gli scarti. Dalla teoria alla pratica con i tuoi prodotti e i tuoi fornitori.</p>
+        <ul class="course-topics">
+          <li>Calcolo del food cost teorico e reale</li>
+          <li>Costruzione schede ricetta standardizzate</li>
+          <li>Gestione scarti e rese degli alimenti</li>
+          <li>Monitoraggio periodico e aggiornamento prezzi</li>
+          <li>Strumenti di controllo mensile</li>
+        </ul>
+      </div>
+      <div class="course-card">
+        <div class="course-num">02</div>
+        <h3 class="course-title">Menu Engineering</h3>
+        <div class="course-target">Titolari e responsabili di sala</div>
+        <p class="course-text">Trasforma il menu da lista di piatti a strumento di vendita. Impari a classificare ogni piatto per redditività e popolarità, ottimizzare i prezzi e costruire una carta che lavora per te.</p>
+        <ul class="course-topics">
+          <li>La matrice Stars/Plowhorses/Puzzles/Dogs</li>
+          <li>Analisi della popolarità e del margine</li>
+          <li>Strategie di pricing psicologico</li>
+          <li>Layout e design del menu</li>
+          <li>Naming e descrizione dei piatti</li>
+        </ul>
+      </div>
+      <div class="course-card">
+        <div class="course-num">03</div>
+        <h3 class="course-title">Gestione Acquisti e Magazzino</h3>
+        <div class="course-target">Titolari, chef e magazzinieri</div>
+        <p class="course-text">Controllo degli acquisti, gestione delle scorte e relazione con i fornitori. Impari a ridurre gli sprechi, ottimizzare gli ordini e avere sempre la situazione del magazzino sotto controllo.</p>
+        <ul class="course-topics">
+          <li>Pianificazione degli ordini ai fornitori</li>
+          <li>Gestione delle scorte minime e massime</li>
+          <li>Analisi delle fatture di acquisto</li>
+          <li>Riduzione degli sprechi e delle perdite</li>
+          <li>Censimento e valutazione fornitori</li>
+        </ul>
+      </div>
+      <div class="course-card">
+        <div class="course-num">04</div>
+        <h3 class="course-title">F&B Management</h3>
+        <div class="course-target">Titolari e manager</div>
+        <p class="course-text">Il percorso completo per chi gestisce un'attività food & beverage e vuole avere il controllo totale: dalla struttura dei costi ai KPI, dalla pianificazione del menu alla gestione del personale.</p>
+        <ul class="course-topics">
+          <li>Struttura completa dei costi F&B</li>
+          <li>KPI e reportistica mensile</li>
+          <li>Pianificazione e ingegnerizzazione del menu</li>
+          <li>Gestione e costo del personale</li>
+          <li>Dashboard di controllo operativo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="eyebrow">Il formato</div>
+    <h2 class="section-h2">Come si svolge la formazione</h2>
+    <p class="section-lead">Percorsi multi-sessione strutturati in base alle esigenze del gruppo. In presenza in Sardegna o da remoto.</p>
+    <div class="format-grid" style="margin-top:48px;">
+      <div class="format-item">
+        <div class="format-icon">🏢</div>
+        <div class="format-title">In presenza</div>
+        <div class="format-text">Sessioni in aula o direttamente nel tuo locale. Lavoriamo con i tuoi dati reali — fatture, scontrini, menu — per applicare subito quello che impari.</div>
+      </div>
+      <div class="format-item">
+        <div class="format-icon">💻</div>
+        <div class="format-title">Da remoto</div>
+        <div class="format-text">Sessioni video per chi si trova fuori dalla Sardegna o preferisce la flessibilità. Stessa qualità, stessa praticità — adattata al formato online.</div>
+      </div>
+      <div class="format-item">
+        <div class="format-icon">👥</div>
+        <div class="format-title">Per gruppi e associazioni</div>
+        <div class="format-text">Corsi progettati per Confcommercio, CNA, consorzi e gruppi di imprenditori. Contenuti calibrati sul livello del gruppo e sul settore specifico.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="istitutional">
+  <div class="container">
+    <div class="istitutional-inner">
+      <div>
+        <div class="eyebrow" style="color:var(--terra-l)">Formazione istituzionale</div>
+        <h2>Collaboro con le principali associazioni di categoria in Sardegna</h2>
+        <p>Dal 2008 erogo formazione per enti, associazioni e consorzi. I corsi istituzionali seguono lo stesso approccio pratico dei percorsi individuali — con contenuti adattati al contesto specifico.</p>
+        <p>Se rappresenti un'associazione di categoria e vuoi progettare un corso per i tuoi associati, contattami per un preventivo dedicato.</p>
+        <a href="/#contact" class="btn btn-light" style="margin-top:24px;">Richiedi un preventivo →</a>
+      </div>
+      <div class="istitutional-logos">
+        <div class="istitutional-logo-item">
+          <div class="istitutional-logo-name">Confcommercio</div>
+          <div class="istitutional-logo-detail">Sassari · Olbia · Oristano — Management e marketing per la ristorazione</div>
+        </div>
+        <div class="istitutional-logo-item">
+          <div class="istitutional-logo-name">CNA</div>
+          <div class="istitutional-logo-detail">Nuoro · Olbia — Management della ristorazione e F&B management</div>
+        </div>
+        <div class="istitutional-logo-item">
+          <div class="istitutional-logo-name">Centro Cash Sardegna</div>
+          <div class="istitutional-logo-detail">Percorso completo sul food cost per operatori horeca</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-bottom">
+  <div class="container">
+    <div class="cta-bottom-inner">
+      <div>
+        <h2 class="cta-bottom-h2">Vuoi un corso su misura per il tuo locale o la tua associazione?</h2>
+        <p class="cta-bottom-text">Contattami per capire qual è il percorso più adatto alla tua situazione. Rispondo entro 24 ore.</p>
+      </div>
+      <a href="/#contact" class="btn btn-dark" style="white-space:nowrap;">Richiedi informazioni →</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 Daniele Scano · Gestione Ristorante · P.IVA 02704310202 · <a href="/privacy-policy" style="color:rgba(255,255,255,.3)">Privacy</a></footer>
+</body>
+</html>

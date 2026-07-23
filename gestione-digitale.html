@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestione Digitale per Ristoranti – Daniele Scano</title>
+  <meta name="description" content="Implementazione di piattaforme cloud per la gestione di ristoranti e bar in Sardegna. Controllo food cost, vendite e magazzino in tempo reale." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{--ink:#1C1C1A;--ink-2:#3D3D3A;--ink-3:#6B6560;--terra:#C1614A;--terra-l:#E8A087;--terra-xl:#F5EDE6;--paper:#F0EDE8;--white:#FAFAF8;--border:#E2DDD8;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Epilogue',system-ui,sans-serif;--max:1100px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--white);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none;}
+    .container{max-width:var(--max);margin:0 auto;padding:0 40px;}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:3px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
+    .btn-dark{background:var(--ink);color:#fff;} .btn-dark:hover{background:var(--ink-2);}
+    .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink);} .btn-outline:hover{background:var(--ink);color:#fff;}
+    .btn-terra{background:var(--terra);color:#fff;} .btn-terra:hover{background:#A8503C;}
+    .eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);}
+    nav{position:sticky;top:0;z-index:100;background:rgba(250,250,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 40px;}
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .nav-logo-name{font-family:var(--serif);font-size:19px;font-weight:700;}
+    .nav-logo-sub{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;}
+    .nav-back{font-size:13px;color:var(--ink-3);} .nav-cta{font-size:13px;font-weight:600;color:var(--terra);}
+    .hero{padding:100px 0 80px;background:var(--white);border-bottom:1px solid var(--border);}
+    .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+    .hero-eyebrow-line{width:28px;height:1px;background:var(--terra);}
+    .hero-h1{font-family:var(--serif);font-size:clamp(36px,5vw,58px);font-weight:700;line-height:1.1;margin-bottom:20px;}
+    .hero-h1 em{font-style:italic;color:var(--terra);}
+    .hero-lead{font-size:17px;font-weight:300;color:var(--ink-3);line-height:1.75;margin-bottom:36px;}
+    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+    .dashboard-preview{background:var(--ink);border-radius:8px;padding:28px;position:relative;}
+    .dashboard-preview::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--terra);}
+    .dashboard-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+    .dashboard-title{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+    .dashboard-dot{width:8px;height:8px;border-radius:50%;background:var(--terra);}
+    .dashboard-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+    .d-metric{background:rgba(255,255,255,.05);border-radius:4px;padding:14px;}
+    .d-metric-label{font-size:10px;color:rgba(255,255,255,.35);margin-bottom:4px;text-transform:uppercase;letter-spacing:.1em;}
+    .d-metric-val{font-family:var(--serif);font-size:24px;font-weight:700;color:#fff;line-height:1;}
+    .d-metric-delta{font-size:11px;color:var(--terra-l);margin-top:3px;}
+    .d-bar-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+    .d-bar-label{font-size:11px;color:rgba(255,255,255,.4);}
+    .d-bar-val{font-size:11px;color:rgba(255,255,255,.6);}
+    .d-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin-bottom:10px;overflow:hidden;}
+    .d-bar-fill{height:100%;background:var(--terra);border-radius:2px;}
+    section{padding:100px 0;}
+    .section-alt{background:var(--paper);}
+    .section-dark{background:var(--ink);}
+    .section-h2{font-family:var(--serif);font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;margin:12px 0 14px;}
+    .section-lead{font-size:16px;font-weight:300;color:var(--ink-3);line-height:1.8;}
+    .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px;}
+    .feature-item{background:var(--white);padding:32px;}
+    .feature-icon{font-size:28px;margin-bottom:16px;}
+    .feature-title{font-size:16px;font-weight:600;margin-bottom:8px;}
+    .feature-text{font-size:14px;color:var(--ink-3);line-height:1.7;}
+    .process-steps{display:flex;flex-direction:column;gap:2px;margin-top:48px;}
+    .process-step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:28px 32px;display:grid;grid-template-columns:60px 1fr;gap:24px;transition:background .2s;}
+    .process-step:hover{background:rgba(255,255,255,.08);}
+    .process-num{font-family:var(--serif);font-size:40px;font-weight:700;color:var(--terra);line-height:1;}
+    .process-title{font-size:17px;font-weight:600;color:#fff;margin-bottom:6px;}
+    .process-text{font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;}
+    .forwhom-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:48px;}
+    .forwhom-item{background:var(--white);padding:32px;border-left:3px solid var(--terra);}
+    .forwhom-title{font-size:16px;font-weight:600;margin-bottom:8px;}
+    .forwhom-text{font-size:14px;color:var(--ink-3);line-height:1.7;}
+    .cta-bottom{background:var(--terra);padding:80px 0;}
+    .cta-bottom-inner{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
+    .cta-bottom-h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,38px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:12px;}
+    .cta-bottom-text{font-size:16px;font-weight:300;color:rgba(255,255,255,.7);line-height:1.75;}
+    .btn-white{background:#fff;color:var(--terra);} .btn-white:hover{background:var(--terra-xl);}
+    footer{background:var(--ink);color:rgba(255,255,255,.3);text-align:center;padding:24px;font-size:12px;}
+    @media(max-width:900px){.hero-inner,.features-grid,.forwhom-grid,.cta-bottom-inner{grid-template-columns:1fr;} .dashboard-preview{display:none;}}
+    @media(max-width:600px){.container{padding:0 20px;} nav{padding:0 20px;} .features-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/"><div class="nav-logo-name">Daniele Scano</div><div class="nav-logo-sub">Gestione Ristorante</div></a>
+    <div style="display:flex;align-items:center;gap:32px;">
+      <a href="/" class="nav-back">← Tutti i servizi</a>
+      <a href="/#contact" class="nav-cta">Parliamo →</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow"><div class="hero-eyebrow-line"></div><span class="eyebrow">Gestione Digitale</span></div>
+        <h1 class="hero-h1">Sai ogni giorno<br>come sta andando<br><em>il tuo locale.</em></h1>
+        <p class="hero-lead">Implemento piattaforme cloud per gestire vendite, magazzino e food cost in tempo reale. Finisci di aspettare il commercialista per capire come sei messo.</p>
+        <div class="hero-ctas">
+          <a href="/#contact" class="btn btn-dark">Richiedi una demo →</a>
+          <a href="#come-funziona" class="btn btn-outline">Come funziona</a>
+        </div>
+      </div>
+      <div class="dashboard-preview">
+        <div class="dashboard-header">
+          <div class="dashboard-title">Dashboard · Questo mese</div>
+          <div class="dashboard-dot"></div>
+        </div>
+        <div class="dashboard-metrics">
+          <div class="d-metric">
+            <div class="d-metric-label">Food Cost</div>
+            <div class="d-metric-val">28,4%</div>
+            <div class="d-metric-delta">↓ obiettivo raggiunto</div>
+          </div>
+          <div class="d-metric">
+            <div class="d-metric-label">Fatturato</div>
+            <div class="d-metric-val">+23%</div>
+            <div class="d-metric-delta">↑ vs stesso periodo</div>
+          </div>
+        </div>
+        <div class="d-bar-row"><span class="d-bar-label">Cibo</span><span class="d-bar-val">28,4%</span></div>
+        <div class="d-bar"><div class="d-bar-fill" style="width:28%"></div></div>
+        <div class="d-bar-row"><span class="d-bar-label">Bevande</span><span class="d-bar-val">22,1%</span></div>
+        <div class="d-bar"><div class="d-bar-fill" style="width:22%"></div></div>
+        <div class="d-bar-row"><span class="d-bar-label">Personale</span><span class="d-bar-val">31,5%</span></div>
+        <div class="d-bar"><div class="d-bar-fill" style="width:31%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="eyebrow">Cosa cambia</div>
+    <h2 class="section-h2">Dal foglio Excel alla dashboard in tempo reale</h2>
+    <p class="section-lead">La maggior parte dei ristoratori gestisce i dati a mano — o non li gestisce affatto. Una piattaforma cloud cambia completamente il modo in cui prendi decisioni.</p>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Dati in tempo reale</div>
+        <div class="feature-text">Vendite, acquisti, food cost e margini aggiornati ogni giorno. Sai sempre come stai andando — non lo scopri a fine mese.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🧾</div>
+        <div class="feature-title">Analisi fatture automatica</div>
+        <div class="feature-text">I dati di acquisto entrano nel sistema direttamente dalle fatture. Niente inserimento manuale, niente errori, tutto tracciato.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📦</div>
+        <div class="feature-title">Magazzino sotto controllo</div>
+        <div class="feature-text">Scorte, movimenti e ordini ai fornitori gestiti in un unico posto. Sai sempre cosa hai, cosa manca e quanto hai speso.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">💰</div>
+        <div class="feature-title">Food cost per piatto</div>
+        <div class="feature-text">Il costo reale di ogni piatto aggiornato automaticamente quando cambiano i prezzi dei fornitori. Niente più calcoli manuali.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📈</div>
+        <div class="feature-title">Analisi delle vendite</div>
+        <div class="feature-text">Quali piatti vendono di più, in quali fasce orarie, con quale margine. Dati per prendere decisioni sul menu e sulle promozioni.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">👥</div>
+        <div class="feature-title">Accessibile a tutto il team</div>
+        <div class="feature-text">I tuoi collaboratori possono inserire dati e consultare le informazioni che li riguardano. Tutto tracciato, tutto sotto controllo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark" id="come-funziona">
+  <div class="container">
+    <div class="eyebrow" style="color:var(--terra-l)">Il percorso</div>
+    <h2 class="section-h2" style="color:#fff">Come implemento la piattaforma</h2>
+    <p class="section-lead" style="color:rgba(255,255,255,.5)">Non installo un software e sparisco. Seguo tutto il percorso — dalla configurazione alla formazione del team — finché il sistema non gira da solo.</p>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <div>
+          <div class="process-title">Analisi della situazione</div>
+          <div class="process-text">Capisco come lavori oggi, quali dati hai già e quali mancano. Scelgo la configurazione più adatta al tuo locale specifico.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <div>
+          <div class="process-title">Setup e configurazione</div>
+          <div class="process-text">Configuro la piattaforma con i tuoi prodotti, fornitori, ricette e struttura dei costi. Il sistema parte già con i tuoi dati reali.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <div>
+          <div class="process-title">Formazione del team</div>
+          <div class="process-text">Formo te e i tuoi collaboratori sull'utilizzo quotidiano. Ogni persona impara solo quello che gli serve — niente formazione inutile.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04</div>
+        <div>
+          <div class="process-title">Supporto continuativo</div>
+          <div class="process-text">Non ti lascio solo dopo il go-live. Resto disponibile per dubbi, aggiornamenti e ottimizzazioni nel tempo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="eyebrow">Per chi è adatto</div>
+    <h2 class="section-h2">Funziona per qualsiasi tipo di locale</h2>
+    <p class="section-lead">La gestione digitale non è solo per i grandi ristoranti. È utile ogni volta che hai dati da controllare e decisioni da prendere.</p>
+    <div class="forwhom-grid">
+      <div class="forwhom-item">
+        <div class="forwhom-title">Ristoranti e trattorie</div>
+        <div class="forwhom-text">Food cost per piatto, analisi del menu, controllo acquisti e magazzino. Tutto quello che serve per tenere i margini sotto controllo ogni giorno.</div>
+      </div>
+      <div class="forwhom-item">
+        <div class="forwhom-title">Bar e locali beverage</div>
+        <div class="forwhom-text">Gestione della cantina, controllo delle scorte, analisi delle vendite per categoria. Anche la gestione dei cocktail con costo per ricetta.</div>
+      </div>
+      <div class="forwhom-item">
+        <div class="forwhom-title">Pizzerie e take-away</div>
+        <div class="forwhom-text">Controllo degli impasti, gestione topping e ingredienti, analisi per fascia oraria. Ottimizzazione della produzione basata sui dati reali.</div>
+      </div>
+      <div class="forwhom-item">
+        <div class="forwhom-title">Locali con più punti vendita</div>
+        <div class="forwhom-text">Visione consolidata di tutti i locali in un'unica dashboard. Confronto tra sedi, gestione centralizzata degli acquisti, report unificati.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-bottom">
+  <div class="container">
+    <div class="cta-bottom-inner">
+      <div>
+        <h2 class="cta-bottom-h2">Vuoi vedere come funzionerebbe nel tuo locale?</h2>
+        <p class="cta-bottom-text">Contattami per un incontro conoscitivo. Ti mostro cosa cambia concretamente nella gestione quotidiana.</p>
+      </div>
+      <a href="/#contact" class="btn btn-white" style="white-space:nowrap;">Richiedi una demo →</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 Daniele Scano · Gestione Ristorante · P.IVA 02704310202 · <a href="/privacy-policy" style="color:rgba(255,255,255,.3)">Privacy</a></footer>
+</body>
+</html>

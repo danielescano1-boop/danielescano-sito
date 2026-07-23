@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulenza Gestionale per Ristoranti – Daniele Scano</title>
+  <meta name="description" content="Consulenza gestionale per ristoranti e bar in Sardegna. Food cost, menu engineering, analisi dati e controllo di gestione con Daniele Scano dal 2008." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{--ink:#1C1C1A;--ink-2:#3D3D3A;--ink-3:#6B6560;--terra:#C1614A;--terra-l:#E8A087;--terra-xl:#F5EDE6;--paper:#F0EDE8;--white:#FAFAF8;--border:#E2DDD8;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Epilogue',system-ui,sans-serif;--max:1100px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--white);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none;}
+    .container{max-width:var(--max);margin:0 auto;padding:0 40px;}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:3px;font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
+    .btn-dark{background:var(--ink);color:#fff;} .btn-dark:hover{background:var(--ink-2);transform:translateY(-1px);}
+    .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink);} .btn-outline:hover{background:var(--ink);color:#fff;}
+    .eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;background:rgba(250,250,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 40px;}
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .nav-logo-name{font-family:var(--serif);font-size:19px;font-weight:700;}
+    .nav-logo-sub{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;}
+    .nav-back{font-size:13px;color:var(--ink-3);transition:color .2s;} .nav-back:hover{color:var(--ink);}
+    .nav-cta{font-size:13px;font-weight:600;color:var(--terra);}
+
+    /* HERO */
+    .hero{padding:100px 0 80px;background:var(--white);border-bottom:1px solid var(--border);}
+    .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+    .hero-eyebrow-line{width:28px;height:1px;background:var(--terra);}
+    .hero-h1{font-family:var(--serif);font-size:clamp(36px,5vw,58px);font-weight:700;line-height:1.1;margin-bottom:20px;}
+    .hero-h1 em{font-style:italic;color:var(--terra);}
+    .hero-lead{font-size:17px;font-weight:300;color:var(--ink-3);line-height:1.75;margin-bottom:36px;}
+    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+    .hero-card{background:var(--ink);border-radius:8px;padding:36px;position:relative;}
+    .hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--terra);}
+    .hero-card-label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:24px;}
+    .hero-card-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;}
+    .hero-card-item:last-child{margin-bottom:0;}
+    .hero-card-dot{width:6px;height:6px;border-radius:50%;background:var(--terra);margin-top:7px;flex-shrink:0;}
+    .hero-card-text{font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;}
+    .hero-card-text strong{color:#fff;font-weight:600;}
+
+    /* SECTIONS */
+    section{padding:100px 0;}
+    .section-alt{background:var(--paper);}
+    .section-dark{background:var(--ink);}
+    .section-header{max-width:640px;margin-bottom:56px;}
+    .section-header .eyebrow{margin-bottom:14px;}
+    .section-h2{font-family:var(--serif);font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;margin-top:10px;}
+    .section-lead{font-size:16px;font-weight:300;color:var(--ink-3);line-height:1.8;margin-top:14px;}
+
+    /* COME FUNZIONA */
+    .steps{display:flex;flex-direction:column;gap:2px;}
+    .step-item{background:var(--white);padding:32px 36px;display:grid;grid-template-columns:60px 1fr;gap:24px;align-items:start;transition:background .2s;}
+    .step-item:hover{background:var(--terra-xl);}
+    .step-num{font-family:var(--serif);font-size:42px;font-weight:700;color:var(--terra);line-height:1;}
+    .step-content-title{font-size:18px;font-weight:600;margin-bottom:8px;}
+    .step-content-text{font-size:14px;color:var(--ink-3);line-height:1.75;}
+
+    /* COSA INCLUDE */
+    .includes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+    .include-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:28px 32px;transition:background .2s;}
+    .include-item:hover{background:rgba(255,255,255,.08);}
+    .include-icon{font-size:24px;margin-bottom:14px;}
+    .include-title{font-size:16px;font-weight:600;color:#fff;margin-bottom:8px;}
+    .include-text{font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;}
+
+    /* PER CHI E' */
+    .forwhom-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+    .forwhom-item{background:var(--white);padding:28px;border-left:3px solid var(--terra);}
+    .forwhom-title{font-size:15px;font-weight:600;margin-bottom:8px;}
+    .forwhom-text{font-size:14px;color:var(--ink-3);line-height:1.7;}
+
+    /* PREZZI */
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+    .price-card{background:var(--white);padding:36px;}
+    .price-card.featured{background:var(--terra);color:#fff;}
+    .price-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);margin-bottom:12px;}
+    .price-card.featured .price-label{color:rgba(255,255,255,.7);}
+    .price-name{font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:8px;}
+    .price-val{font-family:var(--serif);font-size:38px;font-weight:700;line-height:1;margin-bottom:4px;}
+    .price-card.featured .price-val{color:#fff;}
+    .price-desc{font-size:13px;color:var(--ink-3);margin-bottom:24px;line-height:1.6;}
+    .price-card.featured .price-desc{color:rgba(255,255,255,.7);}
+    .price-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px;}
+    .price-list li{font-size:13px;display:flex;gap:8px;color:var(--ink-2);}
+    .price-card.featured .price-list li{color:rgba(255,255,255,.85);}
+    .price-list li::before{content:'✓';color:var(--terra);font-weight:700;flex-shrink:0;}
+    .price-card.featured .price-list li::before{color:rgba(255,255,255,.7);}
+
+    /* CTA BOTTOM */
+    .cta-bottom{background:var(--paper);padding:80px 0;}
+    .cta-bottom-inner{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;flex-wrap:wrap;}
+    .cta-bottom-h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,38px);font-weight:700;line-height:1.2;margin-bottom:12px;}
+    .cta-bottom-text{font-size:16px;font-weight:300;color:var(--ink-3);line-height:1.75;}
+
+    footer{background:var(--ink);color:rgba(255,255,255,.3);text-align:center;padding:24px;font-size:12px;}
+
+    @media(max-width:900px){
+      .hero-inner,.cta-bottom-inner{grid-template-columns:1fr;}
+      .hero-card{display:none;}
+      .includes-grid,.forwhom-grid,.pricing-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:600px){.container{padding:0 20px;} nav{padding:0 20px;}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/">
+      <div class="nav-logo-name">Daniele Scano</div>
+      <div class="nav-logo-sub">Gestione Ristorante</div>
+    </a>
+    <div style="display:flex;align-items:center;gap:32px;">
+      <a href="/" class="nav-back">← Tutti i servizi</a>
+      <a href="/#contact" class="nav-cta">Parliamo →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span class="eyebrow">Consulenza Gestionale</span>
+        </div>
+        <h1 class="hero-h1">Entro nel tuo locale.<br>Analizzo i numeri.<br><em>Ti dico la verità.</em></h1>
+        <p class="hero-lead">Non consulenze teoriche. Lavoro direttamente sulla tua attività — food cost, margini, menu, organizzazione — e ti consegno un piano concreto da applicare da subito.</p>
+        <div class="hero-ctas">
+          <a href="/#contact" class="btn btn-dark">Richiedi un incontro →</a>
+          <a href="#come-funziona" class="btn btn-outline">Come funziona</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Cosa analizzo nel tuo locale</div>
+        <div class="hero-card-item"><div class="hero-card-dot"></div><div class="hero-card-text"><strong>Food cost reale vs teorico</strong> — dove sparisce il margine ogni giorno</div></div>
+        <div class="hero-card-item"><div class="hero-card-dot"></div><div class="hero-card-text"><strong>Menu engineering</strong> — quali piatti ti fanno guadagnare e quali no</div></div>
+        <div class="hero-card-item"><div class="hero-card-dot"></div><div class="hero-card-text"><strong>Struttura dei costi</strong> — personale, acquisti, costi fissi e variabili</div></div>
+        <div class="hero-card-item"><div class="hero-card-dot"></div><div class="hero-card-text"><strong>Organizzazione operativa</strong> — procedure, turni, gestione magazzino</div></div>
+        <div class="hero-card-item"><div class="hero-card-dot"></div><div class="hero-card-text"><strong>KPI mensili</strong> — i numeri che devi monitorare ogni mese</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COME FUNZIONA -->
+<section id="come-funziona">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Il percorso</div>
+      <h2 class="section-h2">Come funziona la consulenza</h2>
+      <p class="section-lead">Ogni percorso inizia dall'analisi della tua situazione reale. Niente soluzioni preconfezionate — solo quello che serve al tuo locale specifico.</p>
+    </div>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-content-title">Incontro conoscitivo — 250€</div>
+          <div class="step-content-text">Analizziamo insieme la tua situazione attuale: fatturato, costi, organizzazione, problemi principali. Alla fine sai già dove intervenire e se ha senso continuare con un percorso strutturato.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-content-title">Analisi rapida — 1.200€ / 1 mese</div>
+          <div class="step-content-text">Un mese di lavoro intensivo: food cost reale, struttura dei costi, analisi del menu, dati di vendita. Ti consegno un quadro completo e le priorità di intervento con dati alla mano.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-content-title">Affiancamento continuativo — 6 o 12 mesi</div>
+          <div class="step-content-text">Implementiamo il piano, monitoriamo i risultati ogni mese e ottimizziamo in corso d'opera. Il percorso da 12 mesi prevede rinnovo tacito per chi vuole costruire un sistema stabile nel tempo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COSA INCLUDE -->
+<section class="section-alt section-dark">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow" style="color:var(--terra-l)">Cosa include</div>
+      <h2 class="section-h2" style="color:#fff">Ogni percorso comprende</h2>
+    </div>
+    <div class="includes-grid">
+      <div class="include-item">
+        <div class="include-icon">📊</div>
+        <div class="include-title">Analisi food cost reale</div>
+        <div class="include-text">Calcolo del food cost effettivo per ogni piatto, confronto con il teorico e identificazione delle perdite nascoste.</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon">📋</div>
+        <div class="include-title">Menu engineering</div>
+        <div class="include-text">Classificazione di ogni piatto nella matrice Stars/Plowhorses/Puzzles/Dogs e piano di ottimizzazione della carta.</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon">💼</div>
+        <div class="include-title">Struttura dei costi</div>
+        <div class="include-text">Analisi completa di personale, acquisti, costi fissi e variabili. Sai esattamente dove va ogni euro.</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon">📈</div>
+        <div class="include-title">Dashboard e KPI mensili</div>
+        <div class="include-text">Strumenti di controllo personalizzati per monitorare l'andamento ogni mese senza aspettare il commercialista.</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon">🎯</div>
+        <div class="include-title">Piano d'azione concreto</div>
+        <div class="include-text">Non una lista di consigli generici — un piano operativo con priorità, tempi e azioni specifiche per il tuo locale.</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon">📞</div>
+        <div class="include-title">Supporto continuativo</div>
+        <div class="include-text">Nei percorsi da 6 e 12 mesi, affiancamento mensile in presenza o da remoto per monitorare e aggiustare il tiro.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PER CHI E' -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Per chi è</div>
+      <h2 class="section-h2">Lavoro con chi vuole risultati, non scorciatoie</h2>
+      <p class="section-lead">La consulenza è adatta a situazioni diverse — ma tutte accomunate da una cosa: la volontà di capire i numeri e agire di conseguenza.</p>
+    </div>
+    <div class="forwhom-grid">
+      <div class="forwhom-item">
+        <div class="forwhom-title">Ristoranti e bar già avviati</div>
+        <div class="forwhom-text">Hai un locale che lavora ma i margini non ti convincono. Sai che qualcosa non torna ma non riesci a capire dove. È il caso più comune — e quello in cui si recupera di più.</div>
+      </div>
+      <div class="forwhom-item">
+        <div class="forwhom-title">Nuove aperture</div>
+        <div class="forwhom-text">Stai aprendo e vuoi partire con le basi giuste: food cost impostato, menu costruito per profitto, struttura dei costi pianificata. Eviti errori che poi costano caro da correggere.</div>
+      </div>
+      <div class="forwhom-item">
+        <div class="forwhom-title">Attività in difficoltà</div>
+        <div class="forwhom-text">I conti non tornano e non capisci perché. Servono dati, non opinioni. L'analisi rapida di un mese chiarisce la situazione e indica dove intervenire per primi.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BOTTOM -->
+<div class="cta-bottom">
+  <div class="container">
+    <div class="cta-bottom-inner">
+      <div>
+        <h2 class="cta-bottom-h2">Inizia dall'incontro conoscitivo.</h2>
+        <p class="cta-bottom-text">250€ per capire la tua situazione e decidere insieme il passo successivo. Nessun impegno oltre quello che scegli tu.</p>
+      </div>
+      <a href="/#contact" class="btn btn-dark" style="white-space:nowrap;">Richiedi un incontro →</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 Daniele Scano · Gestione Ristorante · P.IVA 02704310202 · <a href="/privacy-policy" style="color:rgba(255,255,255,.3)">Privacy</a></footer>
+</body>
+</html>

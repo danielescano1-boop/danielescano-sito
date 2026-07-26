@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daniele Scano – Consulente Ristoranti | Gestione Ristorante</title>
   <meta name="description" content="Dal 2008 aiuto ristoratori a capire dove finiscono i soldi e come guadagnare davvero. Consulenza, formazione e strumenti digitali per il settore horeca in Sardegna." />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -67,7 +71,24 @@
     .nav-links a:hover { color: var(--ink); }
     .nav-links .nav-cta { color: var(--terra); font-weight: 600; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .nav-hamburger span { width: 22px; height: 1.5px; background: var(--ink); display: block; border-radius: 2px; }
+    .nav-hamburger span { width: 22px; height: 1.5px; background: var(--ink); display: block; border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 8px 24px 20px; box-shadow: 0 12px 24px rgba(0,0,0,.06);
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      padding: 15px 0; font-size: 16px; font-weight: 500; color: var(--ink-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-mobile-menu a:last-child { border-bottom: none; }
+    .nav-mobile-menu .nav-cta { color: var(--terra); font-weight: 600; }
 
     /* ── HERO ────────────────────────────────────────────── */
     .hero {
@@ -313,6 +334,9 @@
     /* ── FOOTER ──────────────────────────────────────────── */
     footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 72px 0 32px; }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+    .portfolio-grid-center { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 80px; }
+    .institutional-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
     .footer-logo-name { font-family: var(--serif); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
     .footer-logo-sub { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--terra); margin-bottom: 16px; font-weight: 600; }
     .footer-desc { font-size: 14px; color: rgba(255,255,255,.38); line-height: 1.75; max-width: 260px; }
@@ -337,6 +361,8 @@
       .footer-top { grid-template-columns: 1fr 1fr; }
       .results-grid { grid-template-columns: 1fr; }
       .services-header { grid-template-columns: 1fr; gap: 16px; }
+      .portfolio-grid, .institutional-grid { grid-template-columns: 1fr 1fr; }
+      .portfolio-grid-center { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
@@ -344,6 +370,8 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .services-grid, .testi-grid, .blog-grid { grid-template-columns: 1fr; }
+      .portfolio-grid, .institutional-grid, .portfolio-grid-center { grid-template-columns: 1fr; }
+      .portfolio-grid-center > div:empty { display: none; }
       .testi-card:last-child { display: flex; flex-direction: column; }
       .numbers-inner { grid-template-columns: 1fr 1fr; }
       .about-list { grid-template-columns: 1fr; }
@@ -353,6 +381,19 @@
       .book-cover { margin: 0 auto; }
       .hero-proof { flex-direction: column; gap: 24px; }
       .hero-proof-item:not(:last-child) { border: none; padding: 0; margin: 0; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+    }
+    .whatsapp-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 200;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,.4);
+      transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.08); }
+    .whatsapp-float svg { width: 30px; height: 30px; }
+    @media (max-width: 768px) {
+      .whatsapp-float { bottom: 18px; right: 18px; width: 52px; height: 52px; }
+      .whatsapp-float svg { width: 26px; height: 26px; }
     }
   </style>
 </head>
@@ -372,11 +413,20 @@
       <a href="#blog">Blog</a>
       <a href="#contact" class="nav-cta">Parliamo →</a>
     </div>
-    <div class="nav-hamburger" onclick="toggleNav()">
+    <div class="nav-hamburger" onclick="toggleNav()" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="#about">Chi sono</a>
+  <a href="#services">Servizi</a>
+  <a href="#results">Risultati</a>
+  <a href="/blog">Blog</a>
+  <a href="#contact" class="nav-cta">Parliamo →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -487,7 +537,7 @@
     <div class="about-inner">
       <div class="about-left reveal">
         <div class="about-photo">
-          <div class="about-photo-icon">👨‍💼</div>
+          <img src="/foto-daniele.jpg" alt="Daniele Scano" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;" />
           <div class="about-photo-caption">
             <div class="about-photo-caption-name">Daniele Scano</div>
             <div class="about-photo-caption-role">Consulente · Formatore · Gestione Ristorante</div>
@@ -613,7 +663,7 @@
     </div>
 
     <!-- Casi studio -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 2px;" class="reveal">
+    <div class="portfolio-grid reveal">
 
       <div class="result-card" style="background: var(--paper); padding: 36px; transition: background .2s;" onmouseover="this.style.background='var(--terra-xl)'" onmouseout="this.style.background='var(--paper)'">
         <div class="result-tag">Ristorante · Olbia</div>
@@ -672,7 +722,7 @@
     </div>
 
     <!-- Settima card centrata -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 80px;" class="reveal">
+    <div class="portfolio-grid-center reveal">
       <div></div>
       <div class="result-card" style="background: var(--paper); padding: 36px; transition: background .2s;" onmouseover="this.style.background='var(--terra-xl)'" onmouseout="this.style.background='var(--paper)'">
         <div class="result-tag">BBQ Agricolo · Sardegna</div>
@@ -691,7 +741,7 @@
         <div class="eyebrow">Formazione istituzionale</div>
         <h3 style="font-family:var(--serif); font-size:clamp(22px,3vw,34px); font-weight:700; margin-top:14px; line-height:1.2;">Corsi e seminari con le associazioni di categoria</h3>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;">
+      <div class="institutional-grid">
         <div style="background:var(--paper); padding:32px; text-align:center;">
           <div style="font-size:32px; margin-bottom:16px;">🏛️</div>
           <div style="font-family:var(--serif); font-size:18px; font-weight:700; margin-bottom:8px;">Confcommercio</div>
@@ -990,6 +1040,7 @@
             <button type="submit" class="btn btn-dark cta-form-submit">Invia la richiesta →</button>
           </form>
           <p class="cta-email">oppure scrivi a <a href="mailto:info@danielescano.com">info@danielescano.com</a></p>
+          <p style="font-size:12.5px; color:var(--ink-3); text-align:center; margin-top:10px; line-height:1.6;">Ti ricontatto personalmente — anche su WhatsApp se preferisci — entro 24 ore lavorative, per capire se ci sono i presupposti per lavorare insieme.</p>
         </div>
       </div>
     </div>
@@ -1064,7 +1115,16 @@
     });
   });
 
-  function toggleNav() { alert('Menu mobile – da implementare'); }
+  function toggleNav() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  document.querySelectorAll('#mobileMenu a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('mobileMenu').classList.remove('open');
+    });
+  });
 
   function inviaRichiesta() {
     const nome     = document.getElementById('nome').value.trim();
@@ -1090,5 +1150,10 @@
     window.location.href = 'mailto:info@danielescano.com?subject=' + subject + '&body=' + body;
   }
 </script>
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/393486024712?text=Ciao%20Daniele%2C%20sono%20interessato%20a%20una%20consulenza%20per%20il%20mio%20locale" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Scrivimi su WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12.041 2c-5.523 0-10 4.477-10 10 0 1.786.468 3.463 1.29 4.917L2 22l5.267-1.283A9.94 9.94 0 0012.041 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.15a8.14 8.14 0 01-4.15-1.14l-.298-.177-3.129.762.766-3.05-.194-.31A8.12 8.12 0 013.9 12c0-4.494 3.653-8.147 8.147-8.147S20.194 7.506 20.194 12 16.535 20.15 12.041 20.15z"></path></svg>
+</a>
+
 </body>
 </html>

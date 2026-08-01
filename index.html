@@ -341,21 +341,152 @@
       .results-grid { grid-template-columns: 1fr; }
       .services-header { grid-template-columns: 1fr; gap: 16px; }
     }
+    @media (max-width: 1024px) {
+      .hero-inner, .about-inner, .problem-inner, .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-right { display: none; }
+      .hero-rule { display: none; }
+      .services-grid, .testi-grid { grid-template-columns: 1fr 1fr; }
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+      .blog-card:last-child { display: none; }
+      .numbers-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .number-item:not(:last-child) { border: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+      .services-header { grid-template-columns: 1fr; gap: 16px; }
+    }
+
     @media (max-width: 768px) {
-      .container { padding: 0 24px; }
-      nav { padding: 0 24px; }
+      /* Base */
+      html { overflow-x: hidden; }
+      body { overflow-x: hidden; }
+      .container { padding: 0 20px; }
+      nav { padding: 0 20px; }
+
+      /* Nav */
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .services-grid, .testi-grid, .blog-grid { grid-template-columns: 1fr; }
-      .testi-card:last-child { display: flex; flex-direction: column; }
-      .numbers-inner { grid-template-columns: 1fr 1fr; }
-      .about-list { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; gap: 32px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-      .book-inner { grid-template-columns: 1fr; text-align: center; }
+
+      /* Hero */
+      .hero { padding: 100px 0 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 20px; }
+      .hero-right { display: none; }
+      .hero-rule { display: none; }
+      .hero-proof { flex-direction: column; gap: 0; }
+      .hero-proof-item { padding: 16px 0; border-right: none !important; margin-right: 0 !important; border-bottom: 1px solid var(--border); }
+      .hero-proof-item:last-child { border-bottom: none; }
+      .hero-proof-num { font-size: 32px; }
+
+      /* About */
+      .about { padding: 80px 0; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .about-years-badge { right: 16px; top: 16px; }
+
+      /* Problem */
+      .problem { padding: 80px 0; }
+      .problem-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      /* Sezione Metodo — tutte le griglie inline a 1 colonna */
+      #metodo { padding: 80px 0 !important; }
+      #metodo [style*="grid-template-columns: repeat(3"] { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        gap: 2px !important; 
+      }
+      #metodo [style*="grid-template-columns: 1fr 1fr"] { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        gap: 24px !important; 
+      }
+      #metodo [style*="grid-template-columns: repeat(2"] { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        gap: 2px !important; 
+      }
+      #metodo > .container > [style*="grid-template-columns: 1fr 1fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px !important;
+        margin-bottom: 40px !important;
+      }
+
+      /* Services */
+      .services { padding: 80px 0; }
+      .services-grid { grid-template-columns: 1fr; }
+      .services-header { grid-template-columns: 1fr; gap: 16px; }
+
+      /* Numbers */
+      .numbers { padding: 60px 0; }
+      .numbers-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .number-item:not(:last-child) { border: none; }
+      .number-val { font-size: 40px; }
+
+      /* Portfolio / Results */
+      .results { padding: 80px 0; }
+      .results-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .results-grid { grid-template-columns: 1fr; }
+
+      /* Portfolio casi studio — inline grid a 3 col */
+      #results [style*="grid-template-columns: repeat(3"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2px !important;
+      }
+      #results [style*="grid-template-columns: 1fr 1fr 1fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2px !important;
+      }
+      #results [style*="grid-template-columns: repeat(3,1fr)"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2px !important;
+      }
+
+      /* Testimonianze */
+      .testimonials { padding: 80px 0; }
+      .testi-grid { grid-template-columns: 1fr; }
+
+      /* Blog */
+      .blog { padding: 80px 0; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+      /* Book */
+      .book { padding: 80px 0; }
+      .book-inner { grid-template-columns: 1fr; text-align: center; gap: 36px; }
       .book-cover { margin: 0 auto; }
-      .hero-proof { flex-direction: column; gap: 24px; }
-      .hero-proof-item:not(:last-child) { border: none; padding: 0; margin: 0; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+
+      /* CTA */
+      .cta { padding: 80px 0; }
+      .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+
+      /* Wall loghi */
+      #logo-wall { grid-template-columns: repeat(3, 1fr) !important; }
+
+      /* Metodo header e cosa porti */
+      .metodo-header { grid-template-columns: 1fr !important; gap: 24px !important; }
+      .cosa-porti-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+
+      /* Padding sezioni inline */
+      section[style*="padding: 140px"] { padding: 80px 0 !important; }
+      section[style*="padding: 120px"] { padding: 80px 0 !important; }
+      div[style*="padding: 80px 0"] { padding: 60px 0 !important; }
+
+      /* Sezione numeri terracotta */
+      .number-item { padding: 0 16px; }
+
+      /* CTA box "cosa porti a casa" padding */
+      #metodo [style*="padding: 36px 40px"] { padding: 24px 20px !important; }
+
+      /* Risultati header */
+      .results-h2 { font-size: 28px; }
+
+      /* Sezione libro inline */
+      .book-inner { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -518,7 +649,7 @@
   <div class="container">
 
     <!-- Header -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 72px;" class="reveal">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 72px;" class="reveal metodo-header">
       <div>
         <div class="eyebrow" style="color: var(--terra-l);">Il metodo</div>
         <h2 style="font-family: var(--serif); font-size: clamp(30px,4vw,48px); font-weight: 700; color: #fff; line-height: 1.15; margin-top: 14px;">Non faccio consulenza.<br>Costruisco sistemi.</h2>
@@ -573,7 +704,7 @@
 
     <!-- Cosa consegno -->
     <div style="background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-left: 3px solid var(--terra); padding: 36px 40px;" class="reveal">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+      <div class="cosa-porti-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
         <div>
           <div class="eyebrow" style="color: var(--terra-l); margin-bottom: 14px;">Cosa porti a casa</div>
           <h3 style="font-family: var(--serif); font-size: 26px; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 12px;">Strumenti che restano.<br>Non consulenze che svaniscono.</h3>
@@ -965,8 +1096,8 @@
 <section class="book" id="libro">
   <div class="container">
     <div class="book-inner reveal">
-      <div class="book-cover">
-        <div class="book-cover-title">Il ristorante pieno che non guadagna</div>
+      <div class="book-cover" style="padding:0; overflow:hidden;">
+        <img src="copertoni-librojpg" alt="Il ristorante pieno che non guadagna - Daniele Scano" style="width:100%; height:100%; object-fit:cover; display:block;" />
       </div>
       <div>
         <div class="eyebrow book-eyebrow">Il libro</div>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quanto dovrebbe costare davvero un piatto di pasta al ristorante? | Daniele Scano</title>
+  <meta name="description" content="Il food cost è solo una parte del prezzo. Scopri il metodo del moltiplicatore e come costruire un prezzo che copre davvero tutti i costi del locale." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --white: #FAFAF8; --paper: #F0EDE8; --ink: #1C1C1A; --ink-2: #3D3D3A; --ink-3: #6B6560;
+      --terra: #C1614A; --terra-l: #E8A087; --terra-xl: #F5EDE6; --border: #E2DDD8;
+      --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Epilogue', system-ui, sans-serif; --max: 1100px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--terra); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-family: var(--sans); font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all .22s; border-radius: 3px; }
+    .btn-terra { background: var(--terra); color: #fff; }
+    .btn-terra:hover { background: #A8503C; transform: translateY(-1px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; background: rgba(250,250,248,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-name { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink); }
+    .nav-logo-sub { font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-3); transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta { color: var(--terra); font-weight: 600; }
+
+    .article-header { padding: 150px 0 60px; background: var(--paper); }
+    .breadcrumb { font-size: 13px; color: var(--ink-3); margin-bottom: 24px; }
+    .breadcrumb a { color: var(--terra); font-weight: 600; }
+    .article-header h1 { font-family: var(--serif); font-size: clamp(32px,4.5vw,52px); font-weight: 700; line-height: 1.15; margin-bottom: 20px; max-width: 780px; }
+    .article-header-meta { display: flex; gap: 20px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
+    .article-header-meta span::before { content: '·'; margin-right: 20px; color: var(--border); }
+    .article-header-meta span:first-child::before { content: none; margin-right: 0; }
+
+    .article-body { padding: 70px 0 100px; }
+    .article-content { max-width: 700px; margin: 0 auto; }
+    .article-content p { font-size: 17px; color: var(--ink-2); line-height: 1.85; margin-bottom: 24px; }
+    .article-content h2 { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); margin: 52px 0 22px; line-height: 1.25; }
+    .article-content h3 { font-family: var(--serif); font-size: 21px; font-weight: 700; color: var(--ink); margin: 32px 0 12px; }
+    .article-content strong { color: var(--ink); font-weight: 600; }
+
+    .quad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 36px 0; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .quad-card { background: var(--paper); padding: 28px; }
+    .quad-icon { font-size: 22px; margin-bottom: 10px; }
+    .quad-title { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .quad-sub { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--terra); margin-bottom: 12px; }
+    .quad-text { font-size: 14px; color: var(--ink-2); line-height: 1.7; }
+    @media (max-width: 640px) { .quad-grid { grid-template-columns: 1fr; } }
+
+    .steps-list { list-style: none; margin: 28px 0; }
+    .steps-list li { display: flex; gap: 16px; margin-bottom: 20px; }
+    .step-num { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--terra); flex-shrink: 0; }
+    .step-text { font-size: 16px; color: var(--ink-2); line-height: 1.7; }
+    .step-text strong { color: var(--ink); }
+
+    .stat-row { display: flex; gap: 24px; margin: 36px 0; flex-wrap: wrap; }
+    .stat-box { background: var(--terra-xl); border-radius: 4px; padding: 22px 26px; flex: 1; min-width: 160px; }
+    .stat-num { font-family: var(--serif); font-size: 32px; font-weight: 700; color: var(--terra); line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 13px; color: var(--ink-2); }
+
+    .diagram-box { background: var(--paper); border-radius: 6px; padding: 32px; margin: 36px 0; }
+    .diagram-caption { font-size: 13px; color: var(--ink-3); text-align: center; margin-top: 14px; font-style: italic; }
+
+    .article-cta { max-width: 700px; margin: 60px auto 0; background: var(--ink); border-radius: 6px; padding: 40px 44px; text-align: center; }
+    .article-cta p { color: rgba(255,255,255,.6); font-size: 15px; margin-bottom: 20px; }
+    .article-cta p strong { color: #fff; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; } nav { padding: 0 24px; } .nav-links { display: none; }
+      .article-content p { font-size: 16px; } .article-cta { padding: 32px 24px; }
+      .stat-row { flex-direction: column; }
+    }
+
+    footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 72px 0 32px; margin-top: 60px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-logo-name { font-family: var(--serif); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .footer-logo-sub { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--terra); margin-bottom: 16px; font-weight: 600; }
+    .footer-desc { font-size: 14px; color: rgba(255,255,255,.38); line-height: 1.75; max-width: 260px; }
+    .footer-col-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,.45); transition: color .18s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy, .footer-piva { font-size: 12px; color: rgba(255,255,255,.25); }
+    @media (max-width: 768px) { .footer-top { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-name">Daniele Scano</span>
+      <span class="nav-logo-sub">Gestione Ristorante</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#about">Chi sono</a>
+      <a href="/#services">Servizi</a>
+      <a href="/#results">Risultati</a>
+      <a href="/blog" class="nav-cta">Blog</a>
+      <a href="/#contact" class="nav-cta">Parliamo →</a>
+    </div>
+  </div>
+</nav>
+
+<section class="article-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="/blog">← Torna al blog</a></div>
+    <div class="eyebrow">Food Cost</div>
+    <h1 style="margin-top:16px;">Quanto dovrebbe costare davvero un piatto di pasta al ristorante?</h1>
+    <div class="article-header-meta">
+      <span>Daniele Scano</span>
+      <span>5 min di lettura</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-body">
+  <div class="container">
+    <div class="article-content">
+
+
+<p>"Quella pasta costa quattro euro di ingredienti, perché la vendo a quattordici?" È la domanda che si sente ripetere ogni ristoratore da un cliente poco informato — e purtroppo, a volte, se la pone anche il ristoratore stesso, arrivando alla conclusione sbagliata.</p>
+
+<p>Il food cost — il costo delle sole materie prime — è solo una parte dell'equazione del prezzo. Una pasta al pomodoro, per esempio, ha un costo ingredienti molto basso, il che le permette naturalmente una marginalità di profitto spesso superiore al 30%. Ma questo non significa che il prezzo si stabilisca guardando solo quel numero.</p>
+
+<h2>Il prezzo giusto non si calcola "a occhio"</h2>
+
+<p>Per arrivare al prezzo corretto serve considerare il <strong>full cost</strong>: food cost, costo del personale (labor cost), costi fissi (affitto, utenze, gestione) e il margine di utile che vuoi ottenere. Solo mettendo insieme tutte queste voci ottieni un prezzo che copre davvero i costi del locale, non solo quelli del piatto.</p>
+
+<div class="diagram-box">
+  <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+    <rect x="20" y="60" width="130" height="50" fill="var(--terra)" opacity="0.85"/>
+    <text x="85" y="90" text-anchor="middle" font-family="Epilogue" font-size="12" fill="#fff" font-weight="600">Food cost</text>
+    <rect x="155" y="60" width="130" height="50" fill="var(--terra-l)"/>
+    <text x="220" y="90" text-anchor="middle" font-family="Epilogue" font-size="12" fill="#fff" font-weight="600">Labor cost</text>
+    <rect x="290" y="60" width="130" height="50" fill="var(--ink-3)"/>
+    <text x="355" y="90" text-anchor="middle" font-family="Epilogue" font-size="12" fill="#fff" font-weight="600">Costi fissi</text>
+    <rect x="425" y="60" width="130" height="50" fill="var(--ink)"/>
+    <text x="490" y="90" text-anchor="middle" font-family="Epilogue" font-size="12" fill="#fff" font-weight="600">Margine</text>
+    <text x="300" y="140" text-anchor="middle" font-family="Cormorant Garamond" font-size="16" font-weight="700" fill="var(--ink)">= Prezzo di vendita</text>
+  </svg>
+  <div class="diagram-caption">Il full cost: il prezzo nasce dalla somma di tutte le voci, non solo dal costo ingredienti</div>
+</div>
+
+<h2>Il metodo del moltiplicatore</h2>
+
+<p>Un approccio scientifico e ripetibile consiste nel dividere il costo della porzione per la percentuale di food cost ideale che vuoi mantenere. Se il tuo obiettivo è un food cost del 20% su un primo piatto, il moltiplicatore da applicare al costo delle materie prime è 5.</p>
+
+<div class="stat-row">
+  <div class="stat-box">
+    <div class="stat-num">×5</div>
+    <div class="stat-label">moltiplicatore per un food cost target del 20%</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">30%+</div>
+    <div class="stat-label">marginalità tipica di un primo piatto a basso food cost</div>
+  </div>
+</div>
+
+<p>Esempio pratico: se il costo materie prime di un primo piatto è 2,80€, moltiplicato per 5 ottieni un prezzo di vendita indicativo di 14€. Questo prezzo garantisce matematicamente il 20% di food cost — ma è solo il punto di partenza.</p>
+
+<h2>Il numero non basta: serve il confronto con il mercato</h2>
+
+<p>Il prezzo calcolato con il moltiplicatore è un riferimento tecnico, non un dogma. Va sempre confrontato con due fattori esterni: il <strong>valore percepito</strong> dal cliente (un piatto raccontato bene, con ingredienti di qualità visibile, tollera un prezzo più alto a parità di food cost) e quello che il mercato locale è realisticamente disposto a pagare per quel tipo di portata, nella tua zona e nel tuo posizionamento.</p>
+
+<ul class="steps-list">
+  <li>
+    <div class="step-num">01</div>
+    <div class="step-text"><strong>Calcola il costo reale della porzione</strong>, grammature esatte incluse (non stime).</div>
+  </li>
+  <li>
+    <div class="step-num">02</div>
+    <div class="step-text"><strong>Applica il moltiplicatore</strong> corrispondente al food cost target della categoria di piatto.</div>
+  </li>
+  <li>
+    <div class="step-num">03</div>
+    <div class="step-text"><strong>Confronta con il mercato</strong> e con il valore percepito, e aggiusta se necessario — verso l'alto o verso il basso.</div>
+  </li>
+</ul>
+
+<p>Il prezzo di un piatto di pasta non è mai solo "quanto costano gli ingredienti". È il risultato di un calcolo che tiene conto di tutto quello che serve per portarlo in tavola — e di quanto il cliente è disposto a riconoscerne il valore.</p>
+
+
+    </div>
+
+    <div class="article-cta">
+      <p><strong>Vuoi verificare se i prezzi del tuo menu coprono davvero tutti i costi?</strong><br>Costruiamo insieme il full cost dei tuoi piatti principali, dati reali alla mano.</p>
+      <a href="/#contact" class="btn btn-terra">Analizziamo i tuoi prezzi →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-name">Daniele Scano</div>
+        <div class="footer-logo-sub">Gestione Ristorante</div>
+        <p class="footer-desc">Consulente e formatore per il settore horeca in Sardegna. Dal 2008 aiuto ristoratori a costruire attività redditizie e organizzate.</p>
+      </div>
+      <div>
+        <div class="footer-col-label">Servizi</div>
+        <ul class="footer-links">
+          <li><a href="/consulenza">Consulenza gestionale</a></li>
+          <li><a href="/formazione">Corsi di formazione</a></li>
+          <li><a href="/gestione-digitale">Gestione digitale</a></li>
+          <li><a href="/#libro">Il libro</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Informazioni</div>
+        <ul class="footer-links">
+          <li><a href="/#about">Chi sono</a></li>
+          <li><a href="/#results">Risultati</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#contact">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Contatti</div>
+        <ul class="footer-links">
+          <li><a href="mailto:info@danielescano.com">info@danielescano.com</a></li>
+          <li><a href="https://www.danielescano.com">www.danielescano.com</a></li>
+          <li><a href="#">Sassari, Sardegna</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Daniele Scano · Gestione Ristorante – Ditta individuale di Daniele Scano</div>
+      <div class="footer-piva">P.IVA: 02704310202 · <a href="/privacy-policy" style="color:rgba(255,255,255,.3);">Privacy Policy</a> · <a href="/cookie-policy" style="color:rgba(255,255,255,.3);">Cookie Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

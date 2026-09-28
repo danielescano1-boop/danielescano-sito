@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Come leggere una fattura fornitore (e cosa nasconde) | Daniele Scano</title>
+  <meta name="description" content="Prezzi non corrispondenti, quantità sbagliate, aumenti silenziosi. Come proteggere il tuo margine con un accordo scritto sui listini fornitori." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --white: #FAFAF8; --paper: #F0EDE8; --ink: #1C1C1A; --ink-2: #3D3D3A; --ink-3: #6B6560;
+      --terra: #C1614A; --terra-l: #E8A087; --terra-xl: #F5EDE6; --border: #E2DDD8;
+      --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Epilogue', system-ui, sans-serif; --max: 1100px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--terra); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; font-family: var(--sans); font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all .22s; border-radius: 3px; }
+    .btn-terra { background: var(--terra); color: #fff; }
+    .btn-terra:hover { background: #A8503C; transform: translateY(-1px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; background: rgba(250,250,248,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-name { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink); }
+    .nav-logo-sub { font-size: 9px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-3); transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta { color: var(--terra); font-weight: 600; }
+
+    .article-header { padding: 150px 0 60px; background: var(--paper); }
+    .breadcrumb { font-size: 13px; color: var(--ink-3); margin-bottom: 24px; }
+    .breadcrumb a { color: var(--terra); font-weight: 600; }
+    .article-header h1 { font-family: var(--serif); font-size: clamp(32px,4.5vw,52px); font-weight: 700; line-height: 1.15; margin-bottom: 20px; max-width: 780px; }
+    .article-header-meta { display: flex; gap: 20px; font-size: 13px; color: var(--ink-3); flex-wrap: wrap; }
+    .article-header-meta span::before { content: '·'; margin-right: 20px; color: var(--border); }
+    .article-header-meta span:first-child::before { content: none; margin-right: 0; }
+
+    .article-body { padding: 70px 0 100px; }
+    .article-content { max-width: 700px; margin: 0 auto; }
+    .article-content p { font-size: 17px; color: var(--ink-2); line-height: 1.85; margin-bottom: 24px; }
+    .article-content h2 { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); margin: 52px 0 22px; line-height: 1.25; }
+    .article-content h3 { font-family: var(--serif); font-size: 21px; font-weight: 700; color: var(--ink); margin: 32px 0 12px; }
+    .article-content strong { color: var(--ink); font-weight: 600; }
+
+    .quad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 36px 0; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .quad-card { background: var(--paper); padding: 28px; }
+    .quad-icon { font-size: 22px; margin-bottom: 10px; }
+    .quad-title { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .quad-sub { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--terra); margin-bottom: 12px; }
+    .quad-text { font-size: 14px; color: var(--ink-2); line-height: 1.7; }
+    @media (max-width: 640px) { .quad-grid { grid-template-columns: 1fr; } }
+
+    .steps-list { list-style: none; margin: 28px 0; }
+    .steps-list li { display: flex; gap: 16px; margin-bottom: 20px; }
+    .step-num { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--terra); flex-shrink: 0; }
+    .step-text { font-size: 16px; color: var(--ink-2); line-height: 1.7; }
+    .step-text strong { color: var(--ink); }
+
+    .stat-row { display: flex; gap: 24px; margin: 36px 0; flex-wrap: wrap; }
+    .stat-box { background: var(--terra-xl); border-radius: 4px; padding: 22px 26px; flex: 1; min-width: 160px; }
+    .stat-num { font-family: var(--serif); font-size: 32px; font-weight: 700; color: var(--terra); line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 13px; color: var(--ink-2); }
+
+    .diagram-box { background: var(--paper); border-radius: 6px; padding: 32px; margin: 36px 0; }
+    .diagram-caption { font-size: 13px; color: var(--ink-3); text-align: center; margin-top: 14px; font-style: italic; }
+
+    .article-cta { max-width: 700px; margin: 60px auto 0; background: var(--ink); border-radius: 6px; padding: 40px 44px; text-align: center; }
+    .article-cta p { color: rgba(255,255,255,.6); font-size: 15px; margin-bottom: 20px; }
+    .article-cta p strong { color: #fff; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; } nav { padding: 0 24px; } .nav-links { display: none; }
+      .article-content p { font-size: 16px; } .article-cta { padding: 32px 24px; }
+      .stat-row { flex-direction: column; }
+    }
+
+    footer { background: var(--ink); color: rgba(255,255,255,.6); padding: 72px 0 32px; margin-top: 60px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-logo-name { font-family: var(--serif); font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .footer-logo-sub { font-size: 10px; text-transform: uppercase; letter-spacing: .14em; color: var(--terra); margin-bottom: 16px; font-weight: 600; }
+    .footer-desc { font-size: 14px; color: rgba(255,255,255,.38); line-height: 1.75; max-width: 260px; }
+    .footer-col-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,.45); transition: color .18s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy, .footer-piva { font-size: 12px; color: rgba(255,255,255,.25); }
+    @media (max-width: 768px) { .footer-top { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-name">Daniele Scano</span>
+      <span class="nav-logo-sub">Gestione Ristorante</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#about">Chi sono</a>
+      <a href="/#services">Servizi</a>
+      <a href="/#results">Risultati</a>
+      <a href="/blog" class="nav-cta">Blog</a>
+      <a href="/#contact" class="nav-cta">Parliamo →</a>
+    </div>
+  </div>
+</nav>
+
+<section class="article-header">
+  <div class="container">
+    <div class="breadcrumb"><a href="/blog">← Torna al blog</a></div>
+    <div class="eyebrow">Food Cost</div>
+    <h1 style="margin-top:16px;">Come leggere una fattura fornitore (e cosa nasconde)</h1>
+    <div class="article-header-meta">
+      <span>Daniele Scano</span>
+      <span>5 min di lettura</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-body">
+  <div class="container">
+    <div class="article-content">
+
+
+<p>Non avere il controllo dei propri fornitori significa, semplicemente, non avere il controllo della propria azienda. Eppure è una delle aree più trascurate nella gestione quotidiana di un ristorante: le fatture arrivano, vengono archiviate, pagate — e raramente lette riga per riga.</p>
+
+<p>Il risultato è che molti ristoratori subiscono aumenti di listino senza nemmeno accorgersene, scoprendoli solo mesi dopo, quando il danno è già cumulato su decine di consegne.</p>
+
+<h2>Cosa deve riportare ogni documento</h2>
+
+<p>Ogni Documento di Trasporto (DDT) o fattura dovrebbe indicare in modo chiaro il prezzo per ogni singolo prodotto — non un totale generico, ma il dettaglio riga per riga. Senza questa chiarezza, è impossibile verificare se stai pagando quello che avevi concordato.</p>
+
+<h2>Cosa si nasconde tra le righe</h2>
+
+<div class="quad-grid">
+  <div class="quad-card">
+    <div class="quad-icon">💰</div>
+    <div class="quad-title">Prezzi diversi dal pattuito</div>
+    <div class="quad-sub">Aumenti silenziosi</div>
+    <div class="quad-text">Un aumento di pochi centesimi al kg, ripetuto su decine di consegne mensili, diventa una cifra rilevante a fine anno — e spesso passa inosservato se non confronti sistematicamente i prezzi.</div>
+  </div>
+  <div class="quad-card">
+    <div class="quad-icon">📦</div>
+    <div class="quad-title">Quantità non corrispondenti</div>
+    <div class="quad-sub">Scostamenti dagli ordini</div>
+    <div class="quad-text">La quantità consegnata non coincide sempre con quella ordinata. Senza un controllo sistematico al ricevimento merce, questi scostamenti si accumulano nel tempo.</div>
+  </div>
+</div>
+
+<h2>La soluzione: un accordo scritto</h2>
+
+<p>Il modo più efficace per proteggersi non è controllare ogni fattura a mano ogni settimana — è prevenire il problema alla radice. Stipula un accordo scritto con ogni fornitore principale che:</p>
+
+<ul class="steps-list">
+  <li>
+    <div class="step-num">01</div>
+    <div class="step-text"><strong>Vincoli il listino prezzi</strong> per un periodo determinato — tre mesi è un buon punto di partenza, rinnovabile con revisione concordata.</div>
+  </li>
+  <li>
+    <div class="step-num">02</div>
+    <div class="step-text"><strong>Definisca un prezzo massimo d'acquisto</strong>, specialmente per i prodotti freschi soggetti a forti oscillazioni di mercato (pesce, ortaggi di stagione, alcune carni).</div>
+  </li>
+  <li>
+    <div class="step-num">03</div>
+    <div class="step-text"><strong>Preveda una comunicazione preventiva</strong> in caso di variazione, invece di scoprirla a bolla ricevuta.</div>
+  </li>
+</ul>
+
+<h2>Un piccolo aumento, moltiplicato per un anno</h2>
+
+<p>Il vero rischio non è mai un aumento improvviso e vistoso — quello lo noteresti subito. Il rischio reale è l'aumento sistematico e piccolo, quello che passa sotto la soglia dell'attenzione ma si ripete fattura dopo fattura, mese dopo mese. Senza controllo, anche un incremento del 2-3% su un prodotto ad alto consumo può erodere completamente la marginalità che avevi calcolato in fase di pricing.</p>
+
+<p>Controllare le fatture non è un'attività amministrativa noiosa da delegare senza supervisione. È una delle leve più dirette che hai per proteggere il margine che hai già faticato a costruire.</p>
+
+
+    </div>
+
+    <div class="article-cta">
+      <p><strong>Vuoi verificare se i tuoi fornitori ti stanno aumentando i prezzi senza dirtelo?</strong><br>Analizziamo insieme le tue fatture degli ultimi mesi per individuare scostamenti.</p>
+      <a href="/#contact" class="btn btn-terra">Controlliamo i tuoi fornitori →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-name">Daniele Scano</div>
+        <div class="footer-logo-sub">Gestione Ristorante</div>
+        <p class="footer-desc">Consulente e formatore per il settore horeca in Sardegna. Dal 2008 aiuto ristoratori a costruire attività redditizie e organizzate.</p>
+      </div>
+      <div>
+        <div class="footer-col-label">Servizi</div>
+        <ul class="footer-links">
+          <li><a href="/consulenza">Consulenza gestionale</a></li>
+          <li><a href="/formazione">Corsi di formazione</a></li>
+          <li><a href="/gestione-digitale">Gestione digitale</a></li>
+          <li><a href="/#libro">Il libro</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Informazioni</div>
+        <ul class="footer-links">
+          <li><a href="/#about">Chi sono</a></li>
+          <li><a href="/#results">Risultati</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#contact">Contatti</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-label">Contatti</div>
+        <ul class="footer-links">
+          <li><a href="mailto:info@danielescano.com">info@danielescano.com</a></li>
+          <li><a href="https://www.danielescano.com">www.danielescano.com</a></li>
+          <li><a href="#">Sassari, Sardegna</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Daniele Scano · Gestione Ristorante – Ditta individuale di Daniele Scano</div>
+      <div class="footer-piva">P.IVA: 02704310202 · <a href="/privacy-policy" style="color:rgba(255,255,255,.3);">Privacy Policy</a> · <a href="/cookie-policy" style="color:rgba(255,255,255,.3);">Cookie Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

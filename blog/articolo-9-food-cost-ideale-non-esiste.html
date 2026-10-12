@@ -35,6 +35,11 @@
     .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-3); transition: color .2s; }
     .nav-links a:hover { color: var(--ink); }
     .nav-links .nav-cta { color: var(--terra); font-weight: 600; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 14px 11px; margin-right: -11px; -webkit-tap-highlight-color: transparent; }
+    .nav-hamburger span { width: 22px; height: 1.5px; background: var(--ink); display: block; border-radius: 2px; transition: transform .25s ease, opacity .2s ease; }
+    nav.open .nav-hamburger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    nav.open .nav-hamburger span:nth-child(2) { opacity: 0; }
+    nav.open .nav-hamburger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
     .article-header { padding: 150px 0 60px; background: var(--paper); }
     .breadcrumb { font-size: 13px; color: var(--ink-3); margin-bottom: 24px; }
@@ -78,7 +83,12 @@
     .article-cta p strong { color: #fff; }
 
     @media (max-width: 768px) {
-      .container { padding: 0 24px; } nav { padding: 0 24px; } .nav-links { display: none; }
+      .container { padding: 0 24px; } nav { padding: 0 24px; } 
+      .nav-hamburger { display: flex; }
+      .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--white); border-bottom: 1px solid var(--border); padding: 6px 24px 18px; max-height: calc(100vh - 64px); overflow-y: auto; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .25s ease, transform .25s ease, visibility .25s; }
+      nav.open .nav-links { opacity: 1; visibility: visible; transform: none; }
+      .nav-links a { font-size: 16px; padding: 15px 0; border-bottom: 1px solid var(--border); }
+      .nav-links a:last-child { border-bottom: none; }
       .article-content p { font-size: 16px; } .article-cta { padding: 32px 24px; }
       .stat-row { flex-direction: column; }
     }
@@ -105,13 +115,16 @@
       <span class="nav-logo-name">Daniele Scano</span>
       <span class="nav-logo-sub">Gestione Ristorante</span>
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="/#about">Chi sono</a>
       <a href="/#services">Servizi</a>
       <a href="/#results">Risultati</a>
       <a href="/blog" class="nav-cta">Blog</a>
       <a href="/#contact" class="nav-cta">Parliamo →</a>
     </div>
+    <button class="nav-hamburger" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="nav-links" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -243,5 +256,19 @@
   </div>
 </footer>
 
+<script>
+  function toggleNav(force) {
+    const nav = document.getElementById('nav');
+    const btn = nav.querySelector('.nav-hamburger');
+    const open = (typeof force === 'boolean') ? force : !nav.classList.contains('open');
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Chiudi il menu' : 'Apri il menu');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => toggleNav(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleNav(false); });
+  document.addEventListener('click', e => { if (!e.target.closest('#nav')) toggleNav(false); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 768) toggleNav(false); });
+</script>
 </body>
 </html>
